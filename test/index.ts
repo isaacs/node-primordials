@@ -13,6 +13,8 @@ const cleanObj = (o: any, seen: Set<any> = new Set()): any => {
       Object.entries(o).map(([k, v]) => {
         if (k === 'env' || k.startsWith('process')) {
           return [k, typeof v]
+        } else if (v === globalThis) {
+          return [k, '<<globalThis>>']
         } else {
           return [k, cleanObj(v, seen)]
         }
