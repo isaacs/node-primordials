@@ -742,9 +742,7 @@ const TypedArrayPrototype = Reflect.getPrototypeOf(
   Uint8Array.prototype
 ) as TypedArray
 
-const TypedArrayPrototypeGetSymbolToStringTag = (
-  self: TypedArray
-) =>
+const TypedArrayPrototypeGetSymbolToStringTag = (self: TypedArray) =>
   self instanceof Uint8Array
     ? 'Uint8Array'
     : self instanceof Int8Array
@@ -2193,15 +2191,32 @@ const PRIMORDIALS = OBJECT.defineProperties(
 
     processExitCode: {
       enumerable: true,
-      get: () =>
-        SafeReflect.getOwnPropertyDescriptor(ogProcess, 'exitCode')?.value,
+      get: () => {
+        const desc = SafeReflect.getOwnPropertyDescriptor(
+          ogProcess,
+          'exitCode'
+        )
+        // changed in node 19
+        /* c8 ignore start */
+        if (desc?.get) return uncurryThis(desc.get)(ogProcess)
+        else return desc?.value
+        /* c8 ignore stop */
+      },
       set: (value: number | undefined) => {
-        SafeReflect.defineProperty(ogProcess, 'exitCode', {
-          value,
-          enumerable: true,
-          writable: true,
-          configurable: true,
-        })
+        const desc = SafeReflect.getOwnPropertyDescriptor(
+          ogProcess,
+          'exitCode'
+        )
+        // changed in node 19
+        /* c8 ignore start */
+        if (desc?.set) uncurryThis(desc.set)(ogProcess, value)
+        else {
+          SafeReflect.defineProperty(ogProcess, 'exitCode', {
+            ...desc,
+            value,
+          })
+        }
+        /* c8 ignore stop */
       },
     },
 
