@@ -15,6 +15,8 @@ const cleanObj = (o: any, seen: Set<any> = new Set()): any => {
           return [k, typeof v]
         } else if (v === globalThis) {
           return [k, '<<globalThis>>']
+        } else if (k.startsWith('AggregateError') || k === 'PromiseAny') {
+          return [k, '<<undefined in node 14>>']
         } else {
           return [k, cleanObj(v, seen)]
         }

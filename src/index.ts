@@ -973,9 +973,11 @@ const setInterval = Object.freeze(
   )
 )
 const AggregateError = GLOBALTHIS.AggregateError
-const AggregateErrorLength = GLOBALTHIS.AggregateError.length
-const AggregateErrorName = GLOBALTHIS.AggregateError.name
-const AggregateErrorPrototype = cloneSafe(AggregateError.prototype)
+/* c8 ignore start */
+const AggregateErrorLength = GLOBALTHIS.AggregateError?.length
+const AggregateErrorName = GLOBALTHIS.AggregateError?.name
+const AggregateErrorPrototype = cloneSafe(AggregateError?.prototype || {})
+/* c8 ignore stop */
 
 const ArrayFrom = staticCall(Array.from)
 const ArrayIsArray = staticCall(Array.isArray)

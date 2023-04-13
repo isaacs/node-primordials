@@ -7,10 +7,10 @@
 'use strict'
 exports[`test/index.ts TAP > primordials object 1`] = `
 Object {
-  "AggregateError": Function AggregateError(),
-  "AggregateErrorLength": 2,
-  "AggregateErrorName": "AggregateError",
-  "AggregateErrorPrototype": Object {},
+  "AggregateError": "<<undefined in node 14>>",
+  "AggregateErrorLength": "<<undefined in node 14>>",
+  "AggregateErrorName": "<<undefined in node 14>>",
+  "AggregateErrorPrototype": "<<undefined in node 14>>",
   "applyBind": Function bound bind(),
   "Array": Function Array(),
   "ArrayFrom": Function (...args),
@@ -320,7 +320,7 @@ Object {
   "Promise": Function Promise(),
   "PromiseAll": Function all(),
   "PromiseAllSettled": Function allSettled(),
-  "PromiseAny": Function any(),
+  "PromiseAny": "<<undefined in node 14>>",
   "PromiseLength": 1,
   "PromiseName": "Promise",
   "PromisePrototype": Object {},
