@@ -22,6 +22,8 @@
   ],
   "license": "BlueOak-1.0.0",
   "scripts": {
+    "prediff": "npm run prepare",
+    "diff": "bash scripts/diff.sh",
     "preversion": "npm test",
     "postversion": "npm publish",
     "prepublishOnly": "git push origin --follow-tags",

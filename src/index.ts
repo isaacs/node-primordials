@@ -21,16 +21,33 @@ export {
   encodeURIComponent,
   escape,
   unescape,
+
+  // built-in classes and methods
   AggregateError,
   AggregateErrorLength,
   AggregateErrorName,
   AggregateErrorPrototype,
   Array,
+  ArrayBuffer,
+  ArrayBufferGetSymbolSpecies,
+  ArrayBufferIsView,
+  ArrayBufferLength,
+  ArrayBufferName,
+  ArrayBufferPrototype,
+  ArrayBufferPrototypeGetByteLength,
+  ArrayBufferPrototypeSlice,
+  ArrayBufferPrototypeSymbolToStringTag,
   ArrayFrom,
+  ArrayGetSymbolSpecies,
   ArrayIsArray,
+  ArrayIterator,
+  ArrayIteratorPrototype,
+  ArrayIteratorPrototypeNext,
+  ArrayIteratorPrototypeSymbolToStringTag,
   ArrayLength,
   ArrayName,
   ArrayOf,
+  ArrayOfApply,
   ArrayPrototype,
   ArrayPrototypeConcat,
   ArrayPrototypeCopyWithin,
@@ -48,6 +65,7 @@ export {
   ArrayPrototypeJoin,
   ArrayPrototypeKeys,
   ArrayPrototypeLastIndexOf,
+  ArrayPrototypeLength,
   ArrayPrototypeMap,
   ArrayPrototypePop,
   ArrayPrototypePush,
@@ -67,24 +85,27 @@ export {
   ArrayPrototypeUnshiftApply,
   ArrayPrototypeValues,
   BigInt,
-  BigIntAsIntN,
-  BigIntAsUintN,
-  BigIntLength,
-  BigIntName,
-  BigIntPrototype,
-  BigIntPrototypeToLocaleString,
-  BigIntPrototypeToString,
-  BigIntPrototypeValueOf,
   BigInt64Array,
   BigInt64ArrayBYTES_PER_ELEMENT,
   BigInt64ArrayLength,
   BigInt64ArrayName,
   BigInt64ArrayPrototype,
+  BigInt64ArrayPrototypeBYTES_PER_ELEMENT,
+  BigIntAsIntN,
+  BigIntAsUintN,
+  BigIntLength,
+  BigIntName,
+  BigIntPrototype,
+  BigIntPrototypeSymbolToStringTag,
+  BigIntPrototypeToLocaleString,
+  BigIntPrototypeToString,
+  BigIntPrototypeValueOf,
   BigUint64Array,
   BigUint64ArrayBYTES_PER_ELEMENT,
   BigUint64ArrayLength,
   BigUint64ArrayName,
   BigUint64ArrayPrototype,
+  BigUint64ArrayPrototypeBYTES_PER_ELEMENT,
   Boolean,
   BooleanLength,
   BooleanName,
@@ -96,6 +117,7 @@ export {
   DataViewName,
   DataViewPrototype,
   DataViewPrototypeGetBigInt64,
+  DataViewPrototypeGetBigUint64,
   DataViewPrototypeGetBuffer,
   DataViewPrototypeGetByteLength,
   DataViewPrototypeGetByteOffset,
@@ -117,7 +139,6 @@ export {
   DataViewPrototypeSetUint16,
   DataViewPrototypeSetUint32,
   DataViewPrototypeSetUint8,
-  DataViewPrototypeGetBigUint64,
   Error,
   ErrorCaptureStackTrace,
   ErrorLength,
@@ -157,35 +178,36 @@ export {
   Int32ArrayName,
   Int32ArrayPrototype,
   Int8Array,
+  Int8ArrayBYTES_PER_ELEMENT,
   Int8ArrayLength,
   Int8ArrayName,
   Int8ArrayPrototype,
-  Int8ArrayBYTES_PER_ELEMENT,
   JSON,
   JSONParse,
   JSONStringify,
+  JSONSymbolToStringTag,
   Map,
   MapLength,
   MapName,
   MapPrototype,
-  MapPrototypeGet,
-  MapPrototypeSet,
-  MapPrototypeHas,
-  MapPrototypeDelete,
   MapPrototypeClear,
+  MapPrototypeDelete,
   MapPrototypeEntries,
   MapPrototypeForEach,
-  MapPrototypeKeys,
-  MapPrototypeValues,
+  MapPrototypeGet,
   MapPrototypeGetSize,
+  MapPrototypeHas,
+  MapPrototypeKeys,
+  MapPrototypeSet,
+  MapPrototypeValues,
   Math,
   MathAbs,
   MathAcos,
   MathAcosh,
   MathAsin,
   MathAsinh,
-  MathAtan2,
   MathAtan,
+  MathAtan2,
   MathAtanh,
   MathCbrt,
   MathCeil,
@@ -203,10 +225,10 @@ export {
   MathLN2,
   MathLOG10E,
   MathLOG2E,
+  MathLog,
   MathLog10,
   MathLog1p,
   MathLog2,
-  MathLog,
   MathMax,
   MathMaxApply,
   MathMin,
@@ -248,40 +270,40 @@ export {
   NumberPrototypeToString,
   NumberPrototypeValueOf,
   OBJECT as Object,
-  ObjectLength,
-  ObjectName,
-  ObjectPrototype,
   ObjectAssign,
+  ObjectCreate,
+  ObjectDefineProperties,
+  ObjectDefineProperty,
+  ObjectEntries,
+  ObjectFreeze,
+  ObjectFromEntries,
   ObjectGetOwnPropertyDescriptor,
   ObjectGetOwnPropertyDescriptors,
   ObjectGetOwnPropertyNames,
   ObjectGetOwnPropertySymbols,
-  ObjectIs,
-  ObjectPreventExtensions,
-  ObjectSeal,
-  ObjectCreate,
-  ObjectDefineProperties,
-  ObjectDefineProperty,
-  ObjectFreeze,
   ObjectGetPrototypeOf,
-  ObjectSetPrototypeOf,
+  ObjectIs,
   ObjectIsExtensible,
   ObjectIsFrozen,
   ObjectIsSealed,
   ObjectKeys,
-  ObjectEntries,
-  ObjectFromEntries,
-  ObjectValues,
-  ObjectPrototype__defineGetter__,
-  ObjectPrototype__defineSetter__,
+  ObjectLength,
+  ObjectName,
+  ObjectPreventExtensions,
+  ObjectPrototype,
   ObjectPrototypeHasOwnProperty,
-  ObjectPrototype__lookupGetter__,
-  ObjectPrototype__lookupSetter__,
   ObjectPrototypeIsPrototypeOf,
   ObjectPrototypePropertyIsEnumerable,
+  ObjectPrototypeToLocaleString,
   ObjectPrototypeToString,
   ObjectPrototypeValueOf,
-  ObjectPrototypeToLocaleString,
+  ObjectPrototype__defineGetter__,
+  ObjectPrototype__defineSetter__,
+  ObjectPrototype__lookupGetter__,
+  ObjectPrototype__lookupSetter__,
+  ObjectSeal,
+  ObjectSetPrototypeOf,
+  ObjectValues,
   Promise,
   PromiseAll,
   PromiseAllSettled,
@@ -322,10 +344,8 @@ export {
   RegExpLength,
   RegExpName,
   RegExpPrototype,
-  RegExpPrototypeExec,
   RegExpPrototypeCompile,
-  RegExpPrototypeToString,
-  RegExpPrototypeTest,
+  RegExpPrototypeExec,
   RegExpPrototypeGetDotAll,
   RegExpPrototypeGetFlags,
   RegExpPrototypeGetGlobal,
@@ -334,28 +354,29 @@ export {
   RegExpPrototypeGetSource,
   RegExpPrototypeGetSticky,
   RegExpPrototypeGetUnicode,
+  RegExpPrototypeTest,
+  RegExpPrototypeToString,
   Set,
   SetLength,
   SetName,
   SetPrototype,
-  SetPrototypeHas,
   SetPrototypeAdd,
-  SetPrototypeDelete,
   SetPrototypeClear,
+  SetPrototypeDelete,
   SetPrototypeEntries,
   SetPrototypeForEach,
-  SetPrototypeValues,
-  SetPrototypeKeys,
   SetPrototypeGetSize,
+  SetPrototypeHas,
+  SetPrototypeKeys,
+  SetPrototypeValues,
   String,
-  StringLength,
-  StringName,
-  StringPrototype,
   StringFromCharCode,
   StringFromCharCodeApply,
   StringFromCodePoint,
   StringFromCodePointApply,
-  StringRaw,
+  StringLength,
+  StringName,
+  StringPrototype,
   StringPrototypeAnchor,
   StringPrototypeBig,
   StringPrototypeBlink,
@@ -365,9 +386,9 @@ export {
   StringPrototypeCodePointAt,
   StringPrototypeConcat,
   StringPrototypeEndsWith,
+  StringPrototypeFixed,
   StringPrototypeFontcolor,
   StringPrototypeFontsize,
-  StringPrototypeFixed,
   StringPrototypeIncludes,
   StringPrototypeIndexOf,
   StringPrototypeItalics,
@@ -381,40 +402,45 @@ export {
   StringPrototypePadStart,
   StringPrototypeRepeat,
   StringPrototypeReplace,
+  StringPrototypeReplaceAll,
   StringPrototypeSearch,
   StringPrototypeSlice,
   StringPrototypeSmall,
   StringPrototypeSplit,
+  StringPrototypeStartsWith,
   StringPrototypeStrike,
   StringPrototypeSub,
   StringPrototypeSubstr,
   StringPrototypeSubstring,
   StringPrototypeSup,
-  StringPrototypeStartsWith,
-  StringPrototypeToString,
-  StringPrototypeTrim,
-  StringPrototypeTrimStart,
-  StringPrototypeTrimLeft,
-  StringPrototypeTrimEnd,
-  StringPrototypeTrimRight,
   StringPrototypeToLocaleLowerCase,
   StringPrototypeToLocaleUpperCase,
   StringPrototypeToLowerCase,
+  StringPrototypeToString,
   StringPrototypeToUpperCase,
+  StringPrototypeTrim,
+  StringPrototypeTrimEnd,
+  StringPrototypeTrimLeft,
+  StringPrototypeTrimRight,
+  StringPrototypeTrimStart,
   StringPrototypeValueOf,
-  StringPrototypeReplaceAll,
+  StringRaw,
   Symbol,
-  SymbolLength,
-  SymbolName,
-  SymbolPrototype,
-  SymbolFor,
-  SymbolKeyFor,
   SymbolAsyncIterator,
+  SymbolFor,
   SymbolHasInstance,
   SymbolIsConcatSpreadable,
   SymbolIterator,
+  SymbolKeyFor,
+  SymbolLength,
   SymbolMatch,
   SymbolMatchAll,
+  SymbolName,
+  SymbolPrototype,
+  SymbolPrototypeGetDescription,
+  SymbolPrototypeSymbolToPrimitive,
+  SymbolPrototypeToString,
+  SymbolPrototypeValueOf,
   SymbolReplace,
   SymbolSearch,
   SymbolSpecies,
@@ -422,22 +448,53 @@ export {
   SymbolToPrimitive,
   SymbolToStringTag,
   SymbolUnscopables,
-  SymbolPrototypeToString,
-  SymbolPrototypeValueOf,
-  SymbolPrototypeSymbolToPrimitive,
-  SymbolPrototypeGetDescription,
   SyntaxError,
   SyntaxErrorLength,
   SyntaxErrorName,
   SyntaxErrorPrototype,
-  TypedArrayPrototypeGetBuffer,
-  TypedArrayPrototypeGetByteLength,
-  TypedArrayPrototypeGetByteOffset,
-  TypedArrayPrototypeGetLength,
   TypeError,
   TypeErrorLength,
   TypeErrorName,
   TypeErrorPrototype,
+  TypedArray,
+  TypedArrayFrom,
+  TypedArrayGetSymbolSpecies,
+  TypedArrayLength,
+  TypedArrayName,
+  TypedArrayOf,
+  TypedArrayOfApply,
+  TypedArrayPrototype,
+  TypedArrayPrototypeCopyWithin,
+  TypedArrayPrototypeEntries,
+  TypedArrayPrototypeEvery,
+  TypedArrayPrototypeFill,
+  TypedArrayPrototypeFilter,
+  TypedArrayPrototypeFind,
+  TypedArrayPrototypeFindIndex,
+  TypedArrayPrototypeForEach,
+  TypedArrayPrototypeGetBuffer,
+  TypedArrayPrototypeGetByteLength,
+  TypedArrayPrototypeGetByteOffset,
+  TypedArrayPrototypeGetLength,
+  TypedArrayPrototypeGetSymbolToStringTag,
+  TypedArrayPrototypeIncludes,
+  TypedArrayPrototypeIndexOf,
+  TypedArrayPrototypeJoin,
+  TypedArrayPrototypeKeys,
+  TypedArrayPrototypeLastIndexOf,
+  TypedArrayPrototypeMap,
+  TypedArrayPrototypeReduce,
+  TypedArrayPrototypeReduceRight,
+  TypedArrayPrototypeReverse,
+  TypedArrayPrototypeSet,
+  TypedArrayPrototypeSlice,
+  TypedArrayPrototypeSome,
+  TypedArrayPrototypeSort,
+  TypedArrayPrototypeSubarray,
+  TypedArrayPrototypeSymbolIterator,
+  TypedArrayPrototypeToLocaleString,
+  TypedArrayPrototypeToString,
+  TypedArrayPrototypeValues,
   URIError,
   URIErrorLength,
   URIErrorName,
@@ -446,40 +503,40 @@ export {
   URLCreateObjectURL,
   URLRevokeObjectURL,
   Uint16Array,
+  Uint16ArrayBYTES_PER_ELEMENT,
   Uint16ArrayLength,
   Uint16ArrayName,
   Uint16ArrayPrototype,
-  Uint16ArrayBYTES_PER_ELEMENT,
   Uint32Array,
+  Uint32ArrayBYTES_PER_ELEMENT,
   Uint32ArrayLength,
   Uint32ArrayName,
   Uint32ArrayPrototype,
-  Uint32ArrayBYTES_PER_ELEMENT,
   Uint8Array,
+  Uint8ArrayBYTES_PER_ELEMENT,
   Uint8ArrayLength,
   Uint8ArrayName,
   Uint8ArrayPrototype,
-  Uint8ArrayBYTES_PER_ELEMENT,
   Uint8ClampedArray,
+  Uint8ClampedArrayBYTES_PER_ELEMENT,
   Uint8ClampedArrayLength,
   Uint8ClampedArrayName,
   Uint8ClampedArrayPrototype,
-  Uint8ClampedArrayBYTES_PER_ELEMENT,
   WeakMap,
   WeakMapLength,
   WeakMapName,
   WeakMapPrototype,
   WeakMapPrototypeDelete,
   WeakMapPrototypeGet,
-  WeakMapPrototypeSet,
   WeakMapPrototypeHas,
+  WeakMapPrototypeSet,
   WeakSet,
   WeakSetLength,
   WeakSetName,
   WeakSetPrototype,
+  WeakSetPrototypeAdd,
   WeakSetPrototypeDelete,
   WeakSetPrototypeHas,
-  WeakSetPrototypeAdd,
 
   //////
   // bonus: node core doesn't need to harden these, since it has internal
@@ -560,6 +617,7 @@ export type UncurrySetter<O, K extends keyof O, T = O> = (
 
 const {
   Array,
+  ArrayBuffer,
   BigInt,
   BigInt64Array,
   BigUint64Array,
@@ -613,7 +671,7 @@ const {
 
 const OBJECT: typeof Object = GLOBALTHIS.Object
 
-type TypedArray =
+type TypedArray = (
   | Uint8Array
   | Int8Array
   | Uint16Array
@@ -623,6 +681,19 @@ type TypedArray =
   | Uint8ClampedArray
   | Float32Array
   | Float64Array
+) & {
+  // not sure why this isn't picking up, it's definitely on all of these.
+  toLocaleString:
+    | Uint8Array['toLocaleString']
+    | Int8Array['toLocaleString']
+    | Uint16Array['toLocaleString']
+    | Int16Array['toLocaleString']
+    | Uint32Array['toLocaleString']
+    | Int32Array['toLocaleString']
+    | Uint8ClampedArray['toLocaleString']
+    | Float32Array['toLocaleString']
+    | Float64Array['toLocaleString']
+}
 
 type TypedArrayOf = <T extends TypedArray>(
   ctor: TypedArrayConstructor<T>,
@@ -972,9 +1043,11 @@ const setInterval = Object.freeze(
 )
 const AggregateError = GLOBALTHIS.AggregateError
 /* c8 ignore start */
-const AggregateErrorLength = GLOBALTHIS.AggregateError?.length
-const AggregateErrorName = GLOBALTHIS.AggregateError?.name
+const AggregateErrorLength = AggregateError?.length
+const AggregateErrorName = AggregateError?.name
 const AggregateErrorPrototype = cloneSafe(AggregateError?.prototype || {})
+const AggregateErrorPrototypeMessage = ''
+const AggregateErrorPrototypeName = 'AggregateError'
 /* c8 ignore stop */
 
 const ArrayFrom = staticCall(Array.from)
@@ -982,7 +1055,9 @@ const ArrayIsArray = staticCall(Array.isArray)
 const ArrayLength = Array.length
 const ArrayName = Array.name
 const ArrayOf = staticCall(Array.of)
+const ArrayOfApply = staticApply(Array.of)
 const ArrayPrototypeConcat = uncurryThis(ArrayPrototype.concat)
+const ArrayPrototypeLength = 0
 const ArrayPrototypeCopyWithin = uncurryThis(ArrayPrototype.copyWithin)
 const ArrayPrototypeEntries = uncurryThis(ArrayPrototype.entries)
 const ArrayPrototypeEvery = uncurryThis(ArrayPrototype.every)
@@ -1021,6 +1096,34 @@ const ArrayPrototypeToString = uncurryThis(ArrayPrototype.toString)
 const ArrayPrototypeUnshift = uncurryThis(ArrayPrototype.unshift)
 const ArrayPrototypeUnshiftApply = applyBind(ArrayPrototype.unshift)
 const ArrayPrototypeValues = uncurryThis(ArrayPrototype.values)
+const ArrayGetSymbolSpecies = uncurryGetter(Array, Symbol.species)
+
+const ArrayIterator = {
+  prototype: Reflect.getPrototypeOf(ArrayPrototype[Symbol.iterator]()),
+}
+const ArrayIteratorPrototype = cloneSafe(
+  ArrayIterator.prototype as Iterator<any>
+)
+const ArrayIteratorPrototypeNext = uncurryThis(ArrayIteratorPrototype.next)
+const ArrayIteratorPrototypeSymbolToStringTag = (
+  ArrayIteratorPrototype as unknown as { [k: PropertyKey]: string }
+)[Symbol.toStringTag]
+
+const ArrayBufferGetSymbolSpecies = uncurryGetter(
+  ArrayBuffer,
+  Symbol.species
+)
+const ArrayBufferIsView = uncurryThis(ArrayBuffer.isView)
+const ArrayBufferName = ArrayBuffer.name
+const ArrayBufferLength = ArrayBuffer.length
+const ArrayBufferPrototype = cloneSafe(ArrayBuffer.prototype)
+const ArrayBufferPrototypeGetByteLength = uncurryGetter(
+  ArrayBuffer.prototype,
+  'byteLength'
+)
+const ArrayBufferPrototypeSlice = uncurryThis(ArrayBufferPrototype.slice)
+const ArrayBufferPrototypeSymbolToStringTag =
+  ArrayBufferPrototype[Symbol.toStringTag]
 
 const BigIntAsIntN = uncurryThis(BigInt.asIntN)
 const BigIntAsUintN = uncurryThis(BigInt.asUintN)
@@ -1032,16 +1135,22 @@ const BigIntPrototypeToLocaleString = uncurryThis(
 )
 const BigIntPrototypeToString = uncurryThis(BigInt.prototype.toString)
 const BigIntPrototypeValueOf = uncurryThis(BigInt.prototype.valueOf)
+const BigIntPrototypeSymbolToStringTag =
+  BigInt.prototype[Symbol.toStringTag]
 
 const BigInt64ArrayBYTES_PER_ELEMENT = BigInt64Array.BYTES_PER_ELEMENT
 const BigInt64ArrayLength = BigInt64Array.length
 const BigInt64ArrayName = BigInt64Array.name
 const BigInt64ArrayPrototype = BigInt64Array.prototype
+const BigInt64ArrayPrototypeBYTES_PER_ELEMENT =
+  BigInt64Array.prototype.BYTES_PER_ELEMENT
 
 const BigUint64ArrayBYTES_PER_ELEMENT = BigUint64Array.BYTES_PER_ELEMENT
 const BigUint64ArrayLength = BigUint64Array.length
 const BigUint64ArrayName = BigUint64Array.name
 const BigUint64ArrayPrototype = cloneSafe(BigUint64Array.prototype)
+const BigUint64ArrayPrototypeBYTES_PER_ELEMENT =
+  BigUint64ArrayPrototype.BYTES_PER_ELEMENT
 
 const BooleanLength = Boolean.length
 const BooleanName = Boolean.name
@@ -1153,6 +1262,7 @@ const Int8ArrayBYTES_PER_ELEMENT = Int8Array.BYTES_PER_ELEMENT
 const JSON = cloneSafe(JSON_)
 const JSONParse = staticCall(JSON.parse)
 const JSONStringify = staticCall(JSON.stringify)
+const JSONSymbolToStringTag = 'JSON'
 
 const MapLength = Map.length
 const MapName = Map.name
@@ -1499,6 +1609,59 @@ const TypedArrayPrototypeGetLength = uncurryGetter(
   'length'
 )
 
+const TypedArray = TypedArrayPrototype.constructor
+const TypedArrayLength = TypedArray.length
+const TypedArrayName = TypedArray.name
+const TypedArrayGetSymbolSpecies = uncurryGetter(
+  TypedArray,
+  //@ts-ignore
+  Symbol.species
+)
+const TypedArrayPrototypeCopyWithin = uncurryThis(
+  TypedArrayPrototype.copyWithin
+)
+const TypedArrayPrototypeEntries = uncurryThis(TypedArrayPrototype.entries)
+const TypedArrayPrototypeEvery = uncurryThis(TypedArrayPrototype.every)
+const TypedArrayPrototypeFill = uncurryThis(TypedArrayPrototype.fill)
+const TypedArrayPrototypeFilter = uncurryThis(TypedArrayPrototype.filter)
+const TypedArrayPrototypeFind = uncurryThis(TypedArrayPrototype.find)
+const TypedArrayPrototypeFindIndex = uncurryThis(
+  TypedArrayPrototype.findIndex
+)
+const TypedArrayPrototypeForEach = uncurryThis(TypedArrayPrototype.forEach)
+const TypedArrayPrototypeIncludes = uncurryThis(
+  TypedArrayPrototype.includes
+)
+const TypedArrayPrototypeIndexOf = uncurryThis(TypedArrayPrototype.indexOf)
+const TypedArrayPrototypeJoin = uncurryThis(TypedArrayPrototype.join)
+const TypedArrayPrototypeKeys = uncurryThis(TypedArrayPrototype.keys)
+const TypedArrayPrototypeLastIndexOf = uncurryThis(
+  TypedArrayPrototype.lastIndexOf
+)
+const TypedArrayPrototypeMap = uncurryThis(TypedArrayPrototype.map)
+const TypedArrayPrototypeReduce = uncurryThis(TypedArrayPrototype.reduce)
+const TypedArrayPrototypeReduceRight = uncurryThis(
+  TypedArrayPrototype.reduceRight
+)
+const TypedArrayPrototypeReverse = uncurryThis(TypedArrayPrototype.reverse)
+const TypedArrayPrototypeSet = uncurryThis(TypedArrayPrototype.set)
+const TypedArrayPrototypeSlice = uncurryThis(TypedArrayPrototype.slice)
+const TypedArrayPrototypeSome = uncurryThis(TypedArrayPrototype.some)
+const TypedArrayPrototypeSort = uncurryThis(TypedArrayPrototype.sort)
+const TypedArrayPrototypeSubarray = uncurryThis(
+  TypedArrayPrototype.subarray
+)
+const TypedArrayPrototypeSymbolIterator = uncurryThis(
+  TypedArrayPrototype[Symbol.iterator]
+)
+const TypedArrayPrototypeToLocaleString = uncurryThis(
+  TypedArrayPrototype.toLocaleString
+)
+const TypedArrayPrototypeToString = uncurryThis(
+  TypedArrayPrototype.toString
+)
+const TypedArrayPrototypeValues = uncurryThis(TypedArrayPrototype.values)
+
 const TypeErrorLength = TypeError.length
 const TypeErrorName = TypeError.name
 const TypeErrorPrototype = cloneSafe(TypeError.prototype)
@@ -1628,6 +1791,8 @@ const PRIMORDIALS = OBJECT.defineProperties(
     AggregateErrorLength,
     AggregateErrorName,
     AggregateErrorPrototype,
+    AggregateErrorPrototypeMessage,
+    AggregateErrorPrototypeName,
 
     Array,
     ArrayFrom,
@@ -1635,6 +1800,7 @@ const PRIMORDIALS = OBJECT.defineProperties(
     ArrayLength,
     ArrayName,
     ArrayOf,
+    ArrayOfApply,
     ArrayPrototype,
     ArrayPrototypeConcat,
     ArrayPrototypeCopyWithin,
@@ -1652,6 +1818,7 @@ const PRIMORDIALS = OBJECT.defineProperties(
     ArrayPrototypeJoin,
     ArrayPrototypeKeys,
     ArrayPrototypeLastIndexOf,
+    ArrayPrototypeLength,
     ArrayPrototypeMap,
     ArrayPrototypePop,
     ArrayPrototypePush,
@@ -1670,6 +1837,22 @@ const PRIMORDIALS = OBJECT.defineProperties(
     ArrayPrototypeUnshift,
     ArrayPrototypeUnshiftApply,
     ArrayPrototypeValues,
+    ArrayGetSymbolSpecies,
+
+    ArrayBuffer,
+    ArrayBufferGetSymbolSpecies,
+    ArrayBufferIsView,
+    ArrayBufferLength,
+    ArrayBufferName,
+    ArrayBufferPrototype,
+    ArrayBufferPrototypeGetByteLength,
+    ArrayBufferPrototypeSlice,
+    ArrayBufferPrototypeSymbolToStringTag,
+
+    ArrayIterator,
+    ArrayIteratorPrototype,
+    ArrayIteratorPrototypeNext,
+    ArrayIteratorPrototypeSymbolToStringTag,
 
     BigInt,
     BigIntAsIntN,
@@ -1680,18 +1863,21 @@ const PRIMORDIALS = OBJECT.defineProperties(
     BigIntPrototypeToLocaleString,
     BigIntPrototypeToString,
     BigIntPrototypeValueOf,
+    BigIntPrototypeSymbolToStringTag,
 
     BigInt64Array,
     BigInt64ArrayBYTES_PER_ELEMENT,
     BigInt64ArrayLength,
     BigInt64ArrayName,
     BigInt64ArrayPrototype,
+    BigInt64ArrayPrototypeBYTES_PER_ELEMENT,
 
     BigUint64Array,
     BigUint64ArrayBYTES_PER_ELEMENT,
     BigUint64ArrayLength,
     BigUint64ArrayName,
     BigUint64ArrayPrototype,
+    BigUint64ArrayPrototypeBYTES_PER_ELEMENT,
 
     Boolean,
     BooleanLength,
@@ -1782,6 +1968,7 @@ const PRIMORDIALS = OBJECT.defineProperties(
     JSON,
     JSONParse,
     JSONStringify,
+    JSONSymbolToStringTag,
 
     Map,
     MapLength,
@@ -2063,15 +2250,45 @@ const PRIMORDIALS = OBJECT.defineProperties(
     SyntaxErrorName,
     SyntaxErrorPrototype,
 
+    TypedArray,
+    TypedArrayFrom,
+    TypedArrayGetSymbolSpecies,
+    TypedArrayLength,
+    TypedArrayName,
     TypedArrayOf,
     TypedArrayOfApply,
-    TypedArrayFrom,
     TypedArrayPrototype,
-    TypedArrayPrototypeGetSymbolToStringTag,
+    TypedArrayPrototypeCopyWithin,
+    TypedArrayPrototypeEntries,
+    TypedArrayPrototypeEvery,
+    TypedArrayPrototypeFill,
+    TypedArrayPrototypeFilter,
+    TypedArrayPrototypeFind,
+    TypedArrayPrototypeFindIndex,
+    TypedArrayPrototypeForEach,
     TypedArrayPrototypeGetBuffer,
     TypedArrayPrototypeGetByteLength,
     TypedArrayPrototypeGetByteOffset,
     TypedArrayPrototypeGetLength,
+    TypedArrayPrototypeGetSymbolToStringTag,
+    TypedArrayPrototypeIncludes,
+    TypedArrayPrototypeIndexOf,
+    TypedArrayPrototypeJoin,
+    TypedArrayPrototypeKeys,
+    TypedArrayPrototypeLastIndexOf,
+    TypedArrayPrototypeMap,
+    TypedArrayPrototypeReduce,
+    TypedArrayPrototypeReduceRight,
+    TypedArrayPrototypeReverse,
+    TypedArrayPrototypeSet,
+    TypedArrayPrototypeSlice,
+    TypedArrayPrototypeSome,
+    TypedArrayPrototypeSort,
+    TypedArrayPrototypeSubarray,
+    TypedArrayPrototypeSymbolIterator,
+    TypedArrayPrototypeToLocaleString,
+    TypedArrayPrototypeToString,
+    TypedArrayPrototypeValues,
 
     TypeError,
     TypeErrorLength,
