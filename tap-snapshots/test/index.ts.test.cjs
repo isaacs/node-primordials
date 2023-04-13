@@ -487,6 +487,7 @@ Object {
   "TypedArrayFrom": Function TypedArrayFrom(ctor, ...args),
   "TypedArrayOf": Function TypedArrayOf(ctor, ...args),
   "TypedArrayOfApply": Function TypedArrayOfApply(ctor, args),
+  "TypedArrayPrototype": Object {},
   "TypedArrayPrototypeGetBuffer": Function bound call(),
   "TypedArrayPrototypeGetByteLength": Function bound call(),
   "TypedArrayPrototypeGetByteOffset": Function bound call(),

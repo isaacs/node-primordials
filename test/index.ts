@@ -1,10 +1,11 @@
 import t from 'tap'
+import * as primordialsNamed from '../'
 import { primordials } from '../'
 
 import { promisify } from 'util'
 const utilPromisifyCustom = promisify.custom
 
-const cleanObj = (o: any, seen:Set<any> = new Set()):any => {
+const cleanObj = (o: any, seen: Set<any> = new Set()): any => {
   if (seen.has(o)) return '<<seen>>'
   if (!!o && typeof o === 'object') {
     seen.add(o)
@@ -24,6 +25,15 @@ const cleanObj = (o: any, seen:Set<any> = new Set()):any => {
 t.formatSnapshot = (obj: any) => cleanObj(obj)
 
 t.matchSnapshot(primordials, 'primordials object')
+for (const [k, v] of Object.entries(primordialsNamed)) {
+  if (k === 'primordials') continue
+  const p = primordials[k as keyof typeof primordials]
+  if (v !== v) {
+    t.not(p, p, 'NaN reference : ' + k)
+  } else {
+    t.equal(v, p, 'mapped on primordials object: ' + k)
+  }
+}
 
 t.test('TypedArrayPrototypeGetSymbolToStringTag', t => {
   t.equal(
