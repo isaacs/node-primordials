@@ -17,6 +17,8 @@ const cleanObj = (o: any, seen: Set<any> = new Set()): any => {
           return [k, '<<globalThis>>']
         } else if (k.startsWith('AggregateError') || k === 'PromiseAny') {
           return [k, '<<undefined in node 14>>']
+        } else if (/Sete?[ug]id|(Set|Init)groups/.test(k)) {
+          return [k, '<<undefined on windows>>']
         } else {
           return [k, cleanObj(v, seen)]
         }
