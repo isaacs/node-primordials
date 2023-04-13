@@ -4,6 +4,25 @@ import { primordials } from '../'
 import { promisify } from 'util'
 const utilPromisifyCustom = promisify.custom
 
+const cleanObj = (o: any, seen:Set<any> = new Set()):any => {
+  if (seen.has(o)) return '<<seen>>'
+  if (!!o && typeof o === 'object') {
+    seen.add(o)
+    return Object.fromEntries(
+      Object.entries(o).map(([k, v]) => {
+        if (k === 'env' || k.startsWith('process')) {
+          return [k, typeof v]
+        } else {
+          return [k, cleanObj(v, seen)]
+        }
+      })
+    )
+  } else {
+    return o
+  }
+}
+t.formatSnapshot = (obj: any) => cleanObj(obj)
+
 t.matchSnapshot(primordials, 'primordials object')
 
 t.test('TypedArrayPrototypeGetSymbolToStringTag', t => {
