@@ -611,6 +611,7 @@ const {
   unescape,
 } = GLOBALTHIS
 
+const ReflectApply = Reflect.apply
 const OBJECT: typeof Object = GLOBALTHIS.Object
 
 type TypedArray =
@@ -705,7 +706,7 @@ const TypedArrayOf = <T extends TypedArray>(
   if (!fn) {
     throw new TypeError('invalid TypedArray constructor: ' + ctor)
   }
-  return uncurryThis(fn)(ctor, ...args) as T
+  return ReflectApply(fn, ctor, args) as T
 }
 
 const TypedArrayOfApply: TypedArrayOfApply = <T extends TypedArray>(
@@ -735,7 +736,7 @@ const TypedArrayOfApply: TypedArrayOfApply = <T extends TypedArray>(
   if (!fn) {
     throw new TypeError('invalid TypedArray constructor: ' + ctor)
   }
-  return applyBind(fn)(ctor, args) as T
+  return ReflectApply(fn, ctor, args) as T
 }
 
 const TypedArrayPrototype = Reflect.getPrototypeOf(
@@ -790,7 +791,7 @@ const TypedArrayFrom: TypedArrayFrom = <T extends TypedArray>(
   if (!fn) {
     throw new TypeError('invalid TypedArray constructor: ' + ctor)
   }
-  return uncurryThis(fn)(ctor, ...args) as T
+  return ReflectApply(fn, ctor, args) as T
 }
 
 const SafeObject = OBJECT.defineProperties(
@@ -1326,7 +1327,6 @@ const ReferenceErrorLength = ReferenceError.length
 const ReferenceErrorName = ReferenceError.name
 const ReferenceErrorPrototype = cloneSafe(ReferenceError.prototype)
 
-const ReflectApply = SafeReflect.apply
 const ReflectConstruct = SafeReflect.construct
 const ReflectDefineProperty = SafeReflect.defineProperty
 const ReflectDeleteProperty = SafeReflect.deleteProperty
