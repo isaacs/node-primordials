@@ -1,6 +1,7 @@
 # ignore most things, include a handful of others
 /*
 /.*
+!/typedoc.json
 !/src
 !/docs
 !/package.json
