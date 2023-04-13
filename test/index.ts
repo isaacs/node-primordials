@@ -11,14 +11,14 @@ const cleanObj = (o: any, seen: Set<any> = new Set()): any => {
     seen.add(o)
     return Object.fromEntries(
       Object.entries(o).map(([k, v]) => {
-        if (k === 'env' || k.startsWith('process')) {
+        if (/Sete?[ug]id|(Set|Init)groups/.test(k)) {
+          return [k, '<<undefined on windows>>']
+        } else if (k === 'env' || k.startsWith('process')) {
           return [k, typeof v]
         } else if (v === globalThis) {
           return [k, '<<globalThis>>']
         } else if (k.startsWith('AggregateError') || k === 'PromiseAny') {
           return [k, '<<undefined in node 14>>']
-        } else if (/Sete?[ug]id|(Set|Init)groups/.test(k)) {
-          return [k, '<<undefined on windows>>']
         } else {
           return [k, cleanObj(v, seen)]
         }
