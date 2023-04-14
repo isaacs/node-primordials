@@ -4,6 +4,7 @@ export {
   staticApply,
   uncurryThis,
   uncurryGetter,
+  uncurrySetter,
   uncurryMethod,
   staticCall,
   maybeStaticCall,
@@ -20,23 +21,17 @@ export {
   encodeURI,
   encodeURIComponent,
   escape,
+  eval_ as eval,
   unescape,
 
-  // built-in classes and methods
+  //
   AggregateError,
   AggregateErrorLength,
   AggregateErrorName,
   AggregateErrorPrototype,
+
+  //
   Array,
-  ArrayBuffer,
-  ArrayBufferGetSymbolSpecies,
-  ArrayBufferIsView,
-  ArrayBufferLength,
-  ArrayBufferName,
-  ArrayBufferPrototype,
-  ArrayBufferPrototypeGetByteLength,
-  ArrayBufferPrototypeSlice,
-  ArrayBufferPrototypeSymbolToStringTag,
   ArrayFrom,
   ArrayGetSymbolSpecies,
   ArrayIsArray,
@@ -79,11 +74,28 @@ export {
   ArrayPrototypeSort,
   ArrayPrototypeSplice,
   ArrayPrototypeSymbolIterator,
+  ArrayPrototypeSymbolUnscopables,
   ArrayPrototypeToLocaleString,
   ArrayPrototypeToString,
   ArrayPrototypeUnshift,
   ArrayPrototypeUnshiftApply,
   ArrayPrototypeValues,
+
+  //
+  ArrayBuffer,
+  ArrayBufferGetSymbolSpecies,
+  ArrayBufferIsView,
+  ArrayBufferLength,
+  ArrayBufferName,
+  ArrayBufferPrototype,
+  ArrayBufferPrototypeGetByteLength,
+  ArrayBufferPrototypeSlice,
+  ArrayBufferPrototypeSymbolToStringTag,
+
+  //
+  AsyncIteratorPrototype,
+
+  //
   BigInt,
   BigInt64Array,
   BigInt64ArrayBYTES_PER_ELEMENT,
@@ -100,18 +112,24 @@ export {
   BigIntPrototypeToLocaleString,
   BigIntPrototypeToString,
   BigIntPrototypeValueOf,
+
+  //
   BigUint64Array,
   BigUint64ArrayBYTES_PER_ELEMENT,
   BigUint64ArrayLength,
   BigUint64ArrayName,
   BigUint64ArrayPrototype,
   BigUint64ArrayPrototypeBYTES_PER_ELEMENT,
+
+  //
   Boolean,
   BooleanLength,
   BooleanName,
   BooleanPrototype,
   BooleanPrototypeToString,
   BooleanPrototypeValueOf,
+
+  //
   DataView,
   DataViewLength,
   DataViewName,
@@ -139,26 +157,108 @@ export {
   DataViewPrototypeSetUint16,
   DataViewPrototypeSetUint32,
   DataViewPrototypeSetUint8,
+  DataViewPrototypeSymbolToStringTag,
+
+  //
+  Date,
+  DateLength,
+  DateName,
+  DateNow,
+  DateParse,
+  DatePrototype,
+  DatePrototypeGetDate,
+  DatePrototypeGetDay,
+  DatePrototypeGetFullYear,
+  DatePrototypeGetHours,
+  DatePrototypeGetMilliseconds,
+  DatePrototypeGetMinutes,
+  DatePrototypeGetMonth,
+  DatePrototypeGetSeconds,
+  DatePrototypeGetTime,
+  DatePrototypeGetTimezoneOffset,
+  DatePrototypeGetUTCDate,
+  DatePrototypeGetUTCDay,
+  DatePrototypeGetUTCFullYear,
+  DatePrototypeGetUTCHours,
+  DatePrototypeGetUTCMilliseconds,
+  DatePrototypeGetUTCMinutes,
+  DatePrototypeGetUTCMonth,
+  DatePrototypeGetUTCSeconds,
+  DatePrototypeGetYear,
+  DatePrototypeSetDate,
+  DatePrototypeSetFullYear,
+  DatePrototypeSetHours,
+  DatePrototypeSetMilliseconds,
+  DatePrototypeSetMinutes,
+  DatePrototypeSetMonth,
+  DatePrototypeSetSeconds,
+  DatePrototypeSetTime,
+  DatePrototypeSetUTCDate,
+  DatePrototypeSetUTCFullYear,
+  DatePrototypeSetUTCHours,
+  DatePrototypeSetUTCMilliseconds,
+  DatePrototypeSetUTCMinutes,
+  DatePrototypeSetUTCMonth,
+  DatePrototypeSetUTCSeconds,
+  DatePrototypeSetYear,
+  DatePrototypeSymbolToPrimitive,
+  DatePrototypeToDateString,
+  DatePrototypeToGMTString,
+  DatePrototypeToISOString,
+  DatePrototypeToJSON,
+  DatePrototypeToLocaleDateString,
+  DatePrototypeToLocaleString,
+  DatePrototypeToLocaleTimeString,
+  DatePrototypeToString,
+  DatePrototypeToTimeString,
+  DatePrototypeToUTCString,
+  DatePrototypeValueOf,
+  DateUTC,
+
+  //
   Error,
   ErrorCaptureStackTrace,
   ErrorLength,
   ErrorName,
   ErrorPrototype,
+  ErrorPrototypeMessage,
+  ErrorPrototypeName,
   ErrorPrototypeToString,
+
+  //
   EvalError,
   EvalErrorLength,
   EvalErrorName,
   EvalErrorPrototype,
+  EvalErrorPrototypeMessage,
+  EvalErrorPrototypeName,
+
+  //
+  FinalizationRegistry,
+  FinalizationRegistryLength,
+  FinalizationRegistryName,
+  FinalizationRegistryPrototype,
+  FinalizationRegistryPrototypeRegister,
+  FinalizationRegistryPrototypeSymbolToStringTag,
+  FinalizationRegistryPrototypeUnregister,
+
+  //
   Float32Array,
   Float32ArrayBYTES_PER_ELEMENT,
   Float32ArrayLength,
   Float32ArrayName,
   Float32ArrayPrototype,
+  Float32ArrayPrototypeBYTES_PER_ELEMENT,
+
+  //
   Float64Array,
   Float64ArrayBYTES_PER_ELEMENT,
   Float64ArrayLength,
   Float64ArrayName,
   Float64ArrayPrototype,
+  Float64ArrayPrototypeBYTES_PER_ELEMENT,
+
+  //
   Function,
   FunctionLength,
   FunctionName,
@@ -166,27 +266,48 @@ export {
   FunctionPrototypeApply,
   FunctionPrototypeBind,
   FunctionPrototypeCall,
+  FunctionPrototypeGetArguments,
+  FunctionPrototypeGetCaller,
+  FunctionPrototypeLength,
+  FunctionPrototypeName,
+  FunctionPrototypeSetArguments,
+  FunctionPrototypeSetCaller,
+  FunctionPrototypeSymbolHasInstance,
   FunctionPrototypeToString,
+
+  //
   Int16Array,
   Int16ArrayBYTES_PER_ELEMENT,
   Int16ArrayLength,
   Int16ArrayName,
   Int16ArrayPrototype,
+  Int16ArrayPrototypeBYTES_PER_ELEMENT,
+
+  //
   Int32Array,
   Int32ArrayBYTES_PER_ELEMENT,
   Int32ArrayLength,
   Int32ArrayName,
   Int32ArrayPrototype,
+  Int32ArrayPrototypeBYTES_PER_ELEMENT,
+
+  //
   Int8Array,
   Int8ArrayBYTES_PER_ELEMENT,
   Int8ArrayLength,
   Int8ArrayName,
   Int8ArrayPrototype,
+  Int8ArrayPrototypeBYTES_PER_ELEMENT,
+
+  //
   JSON,
   JSONParse,
   JSONStringify,
   JSONSymbolToStringTag,
+
+  //
   Map,
+  MapGetSymbolSpecies,
   MapLength,
   MapName,
   MapPrototype,
@@ -199,7 +320,11 @@ export {
   MapPrototypeHas,
   MapPrototypeKeys,
   MapPrototypeSet,
+  MapPrototypeSymbolIterator,
+  MapPrototypeSymbolToStringTag,
   MapPrototypeValues,
+
+  //
   Math,
   MathAbs,
   MathAcos,
@@ -220,6 +345,7 @@ export {
   MathFloor,
   MathFround,
   MathHypot,
+  MathHypotApply,
   MathImul,
   MathLN10,
   MathLN2,
@@ -232,6 +358,7 @@ export {
   MathMax,
   MathMaxApply,
   MathMin,
+  MathMinApply,
   MathPI,
   MathPow,
   MathRandom,
@@ -242,9 +369,12 @@ export {
   MathSin,
   MathSinh,
   MathSqrt,
+  MathSymbolToStringTag,
   MathTan,
   MathTanh,
   MathTrunc,
+
+  //
   Number,
   NumberEPSILON,
   NumberIsFinite,
@@ -269,6 +399,8 @@ export {
   NumberPrototypeToPrecision,
   NumberPrototypeToString,
   NumberPrototypeValueOf,
+
+  //
   OBJECT as Object,
   ObjectAssign,
   ObjectCreate,
@@ -291,9 +423,11 @@ export {
   ObjectName,
   ObjectPreventExtensions,
   ObjectPrototype,
+  ObjectPrototypeGet__proto__,
   ObjectPrototypeHasOwnProperty,
   ObjectPrototypeIsPrototypeOf,
   ObjectPrototypePropertyIsEnumerable,
+  ObjectPrototypeSet__proto__,
   ObjectPrototypeToLocaleString,
   ObjectPrototypeToString,
   ObjectPrototypeValueOf,
@@ -304,28 +438,47 @@ export {
   ObjectSeal,
   ObjectSetPrototypeOf,
   ObjectValues,
+
+  //
   Promise,
   PromiseAll,
   PromiseAllSettled,
   PromiseAny,
+  PromiseGetSymbolSpecies,
   PromiseLength,
   PromiseName,
   PromisePrototype,
   PromisePrototypeCatch,
   PromisePrototypeFinally,
+  PromisePrototypeSymbolToStringTag,
   PromisePrototypeThen,
   PromiseRace,
   PromiseReject,
   PromiseResolve,
+
+  //
   Proxy,
+  ProxyLength,
+  ProxyName,
+  ProxyRevocable,
+
+  //
   RangeError,
   RangeErrorLength,
   RangeErrorName,
   RangeErrorPrototype,
+  RangeErrorPrototypeMessage,
+  RangeErrorPrototypeName,
+
+  //
   ReferenceError,
   ReferenceErrorLength,
   ReferenceErrorName,
   ReferenceErrorPrototype,
+  ReferenceErrorPrototypeMessage,
+  ReferenceErrorPrototypeName,
+
+  //
   Reflect,
   ReflectApply,
   ReflectConstruct,
@@ -340,7 +493,30 @@ export {
   ReflectPreventExtensions,
   ReflectSet,
   ReflectSetPrototypeOf,
+  ReflectSymbolToStringTag,
+
+  //
   RegExp,
+  RegExpGet$1,
+  RegExpGet$2,
+  RegExpGet$3,
+  RegExpGet$4,
+  RegExpGet$5,
+  RegExpGet$6,
+  RegExpGet$7,
+  RegExpGet$8,
+  RegExpGet$9,
+  RegExpGet$_,
+  RegExpGetDollarAmp,
+  RegExpGetDollarPlus,
+  RegExpGetDollarSquo,
+  RegExpGetDollarTick,
+  RegExpGetInput,
+  RegExpGetLastMatch,
+  RegExpGetLastParen,
+  RegExpGetLeftContext,
+  RegExpGetRightContext,
+  RegExpGetSymbolSpecies,
   RegExpLength,
   RegExpName,
   RegExpPrototype,
@@ -349,14 +525,42 @@ export {
   RegExpPrototypeGetDotAll,
   RegExpPrototypeGetFlags,
   RegExpPrototypeGetGlobal,
+  RegExpPrototypeGetHasIndices,
   RegExpPrototypeGetIgnoreCase,
   RegExpPrototypeGetMultiline,
   RegExpPrototypeGetSource,
   RegExpPrototypeGetSticky,
   RegExpPrototypeGetUnicode,
+  RegExpPrototypeSymbolMatch,
+  RegExpPrototypeSymbolMatchAll,
+  RegExpPrototypeSymbolReplace,
+  RegExpPrototypeSymbolSearch,
+  RegExpPrototypeSymbolSplit,
   RegExpPrototypeTest,
   RegExpPrototypeToString,
+  RegExpSet$1,
+  RegExpSet$2,
+  RegExpSet$3,
+  RegExpSet$4,
+  RegExpSet$5,
+  RegExpSet$6,
+  RegExpSet$7,
+  RegExpSet$8,
+  RegExpSet$9,
+  RegExpSet$_,
+  RegExpSetDollarAmp,
+  RegExpSetDollarPlus,
+  RegExpSetDollarSquo,
+  RegExpSetDollarTick,
+  RegExpSetInput,
+  RegExpSetLastMatch,
+  RegExpSetLastParen,
+  RegExpSetLeftContext,
+  RegExpSetRightContext,
+
+  //
   Set,
+  SetGetSymbolSpecies,
   SetLength,
   SetName,
   SetPrototype,
@@ -368,12 +572,20 @@ export {
   SetPrototypeGetSize,
   SetPrototypeHas,
   SetPrototypeKeys,
+  SetPrototypeSymbolIterator,
+  SetPrototypeSymbolToStringTag,
   SetPrototypeValues,
+
+  //
   String,
   StringFromCharCode,
   StringFromCharCodeApply,
   StringFromCodePoint,
   StringFromCodePointApply,
+  StringIterator,
+  StringIteratorPrototype,
+  StringIteratorPrototypeNext,
+  StringIteratorPrototypeSymbolToStringTag,
   StringLength,
   StringName,
   StringPrototype,
@@ -385,6 +597,7 @@ export {
   StringPrototypeCharCodeAt,
   StringPrototypeCodePointAt,
   StringPrototypeConcat,
+  StringPrototypeConcatApply,
   StringPrototypeEndsWith,
   StringPrototypeFixed,
   StringPrototypeFontcolor,
@@ -393,6 +606,7 @@ export {
   StringPrototypeIndexOf,
   StringPrototypeItalics,
   StringPrototypeLastIndexOf,
+  StringPrototypeLength,
   StringPrototypeLink,
   StringPrototypeLocaleCompare,
   StringPrototypeMatch,
@@ -413,6 +627,7 @@ export {
   StringPrototypeSubstr,
   StringPrototypeSubstring,
   StringPrototypeSup,
+  StringPrototypeSymbolIterator,
   StringPrototypeToLocaleLowerCase,
   StringPrototypeToLocaleUpperCase,
   StringPrototypeToLowerCase,
@@ -425,6 +640,8 @@ export {
   StringPrototypeTrimStart,
   StringPrototypeValueOf,
   StringRaw,
+
+  //
   Symbol,
   SymbolAsyncIterator,
   SymbolFor,
@@ -439,6 +656,7 @@ export {
   SymbolPrototype,
   SymbolPrototypeGetDescription,
   SymbolPrototypeSymbolToPrimitive,
+  SymbolPrototypeSymbolToStringTag,
   SymbolPrototypeToString,
   SymbolPrototypeValueOf,
   SymbolReplace,
@@ -448,14 +666,24 @@ export {
   SymbolToPrimitive,
   SymbolToStringTag,
   SymbolUnscopables,
+
+  //
   SyntaxError,
   SyntaxErrorLength,
   SyntaxErrorName,
   SyntaxErrorPrototype,
+  SyntaxErrorPrototypeMessage,
+  SyntaxErrorPrototypeName,
+
+  //
   TypeError,
   TypeErrorLength,
   TypeErrorName,
   TypeErrorPrototype,
+  TypeErrorPrototypeMessage,
+  TypeErrorPrototypeName,
+
+  //
   TypedArray,
   TypedArrayFrom,
   TypedArrayGetSymbolSpecies,
@@ -495,33 +723,53 @@ export {
   TypedArrayPrototypeToLocaleString,
   TypedArrayPrototypeToString,
   TypedArrayPrototypeValues,
+
+  //
   URIError,
   URIErrorLength,
   URIErrorName,
   URIErrorPrototype,
+  URIErrorPrototypeMessage,
+  URIErrorPrototypeName,
+
+  //
   URL,
   URLCreateObjectURL,
   URLRevokeObjectURL,
+
+  //
   Uint16Array,
   Uint16ArrayBYTES_PER_ELEMENT,
   Uint16ArrayLength,
   Uint16ArrayName,
   Uint16ArrayPrototype,
+  Uint16ArrayPrototypeBYTES_PER_ELEMENT,
+
+  //
   Uint32Array,
   Uint32ArrayBYTES_PER_ELEMENT,
   Uint32ArrayLength,
   Uint32ArrayName,
   Uint32ArrayPrototype,
+  Uint32ArrayPrototypeBYTES_PER_ELEMENT,
+
+  //
   Uint8Array,
   Uint8ArrayBYTES_PER_ELEMENT,
   Uint8ArrayLength,
   Uint8ArrayName,
   Uint8ArrayPrototype,
+  Uint8ArrayPrototypeBYTES_PER_ELEMENT,
+
+  //
   Uint8ClampedArray,
   Uint8ClampedArrayBYTES_PER_ELEMENT,
   Uint8ClampedArrayLength,
   Uint8ClampedArrayName,
   Uint8ClampedArrayPrototype,
+  Uint8ClampedArrayPrototypeBYTES_PER_ELEMENT,
+
+  //
   WeakMap,
   WeakMapLength,
   WeakMapName,
@@ -530,6 +778,15 @@ export {
   WeakMapPrototypeGet,
   WeakMapPrototypeHas,
   WeakMapPrototypeSet,
+  WeakMapPrototypeSymbolToStringTag,
+  WeakRef,
+  WeakRefLength,
+  WeakRefName,
+  WeakRefPrototype,
+  WeakRefPrototypeDeref,
+  WeakRefPrototypeSymbolToStringTag,
+
+  //
   WeakSet,
   WeakSetLength,
   WeakSetName,
@@ -537,12 +794,12 @@ export {
   WeakSetPrototypeAdd,
   WeakSetPrototypeDelete,
   WeakSetPrototypeHas,
+  WeakSetPrototypeSymbolToStringTag,
 
   //////
   // bonus: node core doesn't need to harden these, since it has internal
   // references to them, but it's very handy when dealing with scenarios
   // where process might get clobbered, as in tests and such.
-  PROCESS as process,
   processCwd,
   processArgv,
   processExecArgv,
@@ -622,9 +879,11 @@ const {
   BigInt64Array,
   BigUint64Array,
   Boolean,
+  Date,
   DataView,
   Error,
   EvalError,
+  FinalizationRegistry,
   Float32Array,
   Float64Array,
   Function,
@@ -653,6 +912,7 @@ const {
   Uint8ClampedArray,
   URL,
   WeakMap,
+  WeakRef,
   WeakSet,
 
   setImmediate: setImmediate_,
@@ -666,6 +926,7 @@ const {
   encodeURI,
   encodeURIComponent,
   escape,
+  eval: eval_,
   unescape,
 } = GLOBALTHIS
 
@@ -939,10 +1200,10 @@ const uncurryMethod: <O extends any, K extends keyof O, T = O>(
 //   (thisp: ThisParameterType, ...args: Parameters<O[K]>) =>
 //     obj[k].call(thisp, ...args)
 
-const uncurryGetter = <O extends object, K extends keyof O>(
+const uncurryGetter = <O extends object, K extends keyof O, T = O>(
   obj: O,
   k: K
-): UncurryGetter<O, K> => {
+): UncurryGetter<O, K, T> => {
   const desc = SafeReflect.getOwnPropertyDescriptor(obj, k)
   if (desc?.get) {
     return uncurryThis(desc.get)
@@ -950,25 +1211,23 @@ const uncurryGetter = <O extends object, K extends keyof O>(
   throw new Error('invalid uncurryGetter call: ' + String(k))
 }
 
-// unused?
-//
-// const uncurrySetter = <O extends object, K extends keyof O>(
-//   obj: O,
-//   k: K
-// ): UncurrySetter<O, K> => {
-//   const desc = SafeReflect.getOwnPropertyDescriptor(obj, k)
-//   if (desc?.set) {
-//     return uncurryThis(desc.set)
-//   }
-//   throw new Error('invalid uncurrySetter call: ' + String(k))
-// }
+const uncurrySetter = <O extends object, K extends keyof O, T = O>(
+  obj: O,
+  k: K
+): UncurrySetter<O, K, T> => {
+  const desc = SafeReflect.getOwnPropertyDescriptor(obj, k)
+  if (desc?.set) {
+    return uncurryThis(desc.set) as UncurrySetter<O, K, T>
+  }
+  throw new Error('invalid uncurrySetter call: ' + String(k))
+}
 
 const FunctionPrototypeCall = uncurryThis(call)
 
 // local shorthand
 const fpc = FunctionPrototypeCall
 
-const ArrayPrototype = cloneSafe(Array.prototype)
+const ArrayPrototype = Array.prototype
 
 /* c8 ignore start */
 const getValue = <T extends {}, K extends keyof T>(
@@ -995,7 +1254,7 @@ const hardenRegExp = (re: RegExp) =>
   new RegExp(getValue(re, 'source'), getValue(re, 'flags'))
 /* c8 ignore stop */
 
-const SafeReflect = cloneSafe(Reflect)
+const SafeReflect = Reflect
 
 // TODO: test when process is clobbered, that this all still works kinda
 /* c8 ignore start */
@@ -1045,7 +1304,7 @@ const AggregateError = GLOBALTHIS.AggregateError
 /* c8 ignore start */
 const AggregateErrorLength = AggregateError?.length
 const AggregateErrorName = AggregateError?.name
-const AggregateErrorPrototype = cloneSafe(AggregateError?.prototype || {})
+const AggregateErrorPrototype = AggregateError?.prototype || {}
 const AggregateErrorPrototypeMessage = ''
 const AggregateErrorPrototypeName = 'AggregateError'
 /* c8 ignore stop */
@@ -1089,6 +1348,7 @@ const ArrayPrototypeSymbolIterator = uncurryMethod(
   Array.prototype,
   Symbol.iterator
 )
+const ArrayPrototypeSymbolUnscopables = Array.prototype[Symbol.unscopables]
 const ArrayPrototypeToLocaleString = uncurryThis(
   ArrayPrototype.toLocaleString
 )
@@ -1101,9 +1361,7 @@ const ArrayGetSymbolSpecies = uncurryGetter(Array, Symbol.species)
 const ArrayIterator = {
   prototype: Reflect.getPrototypeOf(ArrayPrototype[Symbol.iterator]()),
 }
-const ArrayIteratorPrototype = cloneSafe(
-  ArrayIterator.prototype as Iterator<any>
-)
+const ArrayIteratorPrototype = ArrayIterator.prototype as Iterator<any>
 const ArrayIteratorPrototypeNext = uncurryThis(ArrayIteratorPrototype.next)
 const ArrayIteratorPrototypeSymbolToStringTag = (
   ArrayIteratorPrototype as unknown as { [k: PropertyKey]: string }
@@ -1116,7 +1374,7 @@ const ArrayBufferGetSymbolSpecies = uncurryGetter(
 const ArrayBufferIsView = uncurryThis(ArrayBuffer.isView)
 const ArrayBufferName = ArrayBuffer.name
 const ArrayBufferLength = ArrayBuffer.length
-const ArrayBufferPrototype = cloneSafe(ArrayBuffer.prototype)
+const ArrayBufferPrototype = ArrayBuffer.prototype
 const ArrayBufferPrototypeGetByteLength = uncurryGetter(
   ArrayBuffer.prototype,
   'byteLength'
@@ -1125,11 +1383,20 @@ const ArrayBufferPrototypeSlice = uncurryThis(ArrayBufferPrototype.slice)
 const ArrayBufferPrototypeSymbolToStringTag =
   ArrayBufferPrototype[Symbol.toStringTag]
 
+const AsyncIteratorPrototype = Reflect.getPrototypeOf(
+  (
+    Reflect.getPrototypeOf(async function* () {}) as {
+      prototype: AsyncGenerator
+      constructor: () => AsyncGenerator
+    }
+  ).prototype
+) as Object
+
 const BigIntAsIntN = uncurryThis(BigInt.asIntN)
 const BigIntAsUintN = uncurryThis(BigInt.asUintN)
 const BigIntLength = BigInt.length
 const BigIntName = BigInt.name
-const BigIntPrototype = cloneSafe(BigInt.prototype)
+const BigIntPrototype = BigInt.prototype
 const BigIntPrototypeToLocaleString = uncurryThis(
   BigInt.prototype.toLocaleString
 )
@@ -1148,13 +1415,13 @@ const BigInt64ArrayPrototypeBYTES_PER_ELEMENT =
 const BigUint64ArrayBYTES_PER_ELEMENT = BigUint64Array.BYTES_PER_ELEMENT
 const BigUint64ArrayLength = BigUint64Array.length
 const BigUint64ArrayName = BigUint64Array.name
-const BigUint64ArrayPrototype = cloneSafe(BigUint64Array.prototype)
+const BigUint64ArrayPrototype = BigUint64Array.prototype
 const BigUint64ArrayPrototypeBYTES_PER_ELEMENT =
   BigUint64ArrayPrototype.BYTES_PER_ELEMENT
 
 const BooleanLength = Boolean.length
 const BooleanName = Boolean.name
-const BooleanPrototype = cloneSafe(Boolean.prototype)
+const BooleanPrototype = Boolean.prototype
 const BooleanPrototypeToString = uncurryThis(Boolean.prototype.toString)
 const BooleanPrototypeValueOf = uncurryThis(Boolean.prototype.valueOf)
 
@@ -1217,58 +1484,212 @@ const DataViewPrototypeSetUint8 = uncurryThis(DataView.prototype.setUint8)
 const DataViewPrototypeGetBigUint64 = uncurryThis(
   DataView.prototype.getBigUint64
 )
+const DataViewPrototypeSymbolToStringTag =
+  DataView.prototype[Symbol.toStringTag]
+
+const DateLength = Date.length
+const DateName = Date.name
+const DateNow = staticCall(Date.now)
+const DateParse = staticCall(Date.parse)
+const DatePrototype = Date.prototype
+const DatePrototypeGetDate = uncurryThis(Date.prototype.getDate)
+const DatePrototypeGetDay = uncurryThis(Date.prototype.getDay)
+const DatePrototypeGetFullYear = uncurryThis(Date.prototype.getFullYear)
+const DatePrototypeGetHours = uncurryThis(Date.prototype.getHours)
+const DatePrototypeGetMilliseconds = uncurryThis(
+  Date.prototype.getMilliseconds
+)
+const DatePrototypeGetMinutes = uncurryThis(Date.prototype.getMinutes)
+const DatePrototypeGetMonth = uncurryThis(Date.prototype.getMonth)
+const DatePrototypeGetSeconds = uncurryThis(Date.prototype.getSeconds)
+const DatePrototypeGetTime = uncurryThis(Date.prototype.getTime)
+const DatePrototypeGetTimezoneOffset = uncurryThis(
+  Date.prototype.getTimezoneOffset
+)
+const DatePrototypeGetUTCDate = uncurryThis(Date.prototype.getUTCDate)
+const DatePrototypeGetUTCDay = uncurryThis(Date.prototype.getUTCDay)
+const DatePrototypeGetUTCFullYear = uncurryThis(
+  Date.prototype.getUTCFullYear
+)
+const DatePrototypeGetUTCHours = uncurryThis(Date.prototype.getUTCHours)
+const DatePrototypeGetUTCMilliseconds = uncurryThis(
+  Date.prototype.getUTCMilliseconds
+)
+const DatePrototypeGetUTCMinutes = uncurryThis(
+  Date.prototype.getUTCMinutes
+)
+const DatePrototypeGetUTCMonth = uncurryThis(Date.prototype.getUTCMonth)
+const DatePrototypeGetUTCSeconds = uncurryThis(
+  Date.prototype.getUTCSeconds
+)
+const DatePrototypeGetYear = uncurryThis(
+  (
+    Date.prototype as Date & {
+      getYear: () => number
+    }
+  ).getYear
+)
+const DatePrototypeSetDate = uncurryThis(Date.prototype.setDate)
+const DatePrototypeSetFullYear = uncurryThis(Date.prototype.setFullYear)
+const DatePrototypeSetHours = uncurryThis(Date.prototype.setHours)
+const DatePrototypeSetMilliseconds = uncurryThis(
+  Date.prototype.setMilliseconds
+)
+const DatePrototypeSetMinutes = uncurryThis(Date.prototype.setMinutes)
+const DatePrototypeSetMonth = uncurryThis(Date.prototype.setMonth)
+const DatePrototypeSetSeconds = uncurryThis(Date.prototype.setSeconds)
+const DatePrototypeSetTime = uncurryThis(Date.prototype.setTime)
+const DatePrototypeSetUTCDate = uncurryThis(Date.prototype.setUTCDate)
+const DatePrototypeSetUTCFullYear = uncurryThis(
+  Date.prototype.setUTCFullYear
+)
+const DatePrototypeSetUTCHours = uncurryThis(Date.prototype.setUTCHours)
+const DatePrototypeSetUTCMilliseconds = uncurryThis(
+  Date.prototype.setUTCMilliseconds
+)
+const DatePrototypeSetUTCMinutes = uncurryThis(
+  Date.prototype.setUTCMinutes
+)
+const DatePrototypeSetUTCMonth = uncurryThis(Date.prototype.setUTCMonth)
+const DatePrototypeSetUTCSeconds = uncurryThis(
+  Date.prototype.setUTCSeconds
+)
+const DatePrototypeSetYear = uncurryThis(
+  (Date.prototype as Date & { setYear: (year: number) => number }).setYear
+)
+const DatePrototypeSymbolToPrimitive = uncurryThis(
+  Date.prototype[Symbol.toPrimitive]
+)
+const DatePrototypeToDateString = uncurryThis(Date.prototype.toDateString)
+const DatePrototypeToGMTString = uncurryThis(
+  (
+    Date.prototype as Date & {
+      toGMTString: () => string
+    }
+  ).toGMTString
+)
+const DatePrototypeToISOString = uncurryThis(Date.prototype.toISOString)
+const DatePrototypeToJSON = uncurryThis(Date.prototype.toJSON)
+const DatePrototypeToLocaleDateString = uncurryThis(
+  Date.prototype.toLocaleDateString
+)
+const DatePrototypeToLocaleString = uncurryThis(
+  Date.prototype.toLocaleString
+)
+const DatePrototypeToLocaleTimeString = uncurryThis(
+  Date.prototype.toLocaleTimeString
+)
+const DatePrototypeToString = uncurryThis(Date.prototype.toString)
+const DatePrototypeToTimeString = uncurryThis(Date.prototype.toTimeString)
+const DatePrototypeToUTCString = uncurryThis(Date.prototype.toUTCString)
+const DatePrototypeValueOf = uncurryThis(Date.prototype.valueOf)
+const DateUTC = staticCall(Date.UTC)
 
 const ErrorCaptureStackTrace = staticCall(Error.captureStackTrace)
 const ErrorLength = Error.length
 const ErrorName = Error.name
-const ErrorPrototype = cloneSafe(Error.prototype)
+const ErrorPrototype = Error.prototype
+const ErrorPrototypeMessage = Error.prototype.message
+const ErrorPrototypeName = Error.prototype.name
 const ErrorPrototypeToString = uncurryThis(Error.prototype.toString)
 
 const EvalErrorLength = EvalError.length
 const EvalErrorName = EvalError.name
-const EvalErrorPrototype = cloneSafe(EvalError.prototype)
+const EvalErrorPrototype = EvalError.prototype
+const EvalErrorPrototypeMessage = EvalError.prototype.message
+const EvalErrorPrototypeName = EvalError.prototype.name
+
+const FinalizationRegistryLength = FinalizationRegistry.length
+const FinalizationRegistryName = FinalizationRegistry.name
+const FinalizationRegistryPrototype = FinalizationRegistry.prototype
+const FinalizationRegistryPrototypeRegister = uncurryThis(
+  FinalizationRegistry.prototype.register
+)
+const FinalizationRegistryPrototypeSymbolToStringTag =
+  FinalizationRegistry.prototype[Symbol.toStringTag]
+const FinalizationRegistryPrototypeUnregister = uncurryThis(
+  FinalizationRegistry.prototype.unregister
+)
 
 const Float32ArrayBYTES_PER_ELEMENT = Float32Array.BYTES_PER_ELEMENT
 const Float32ArrayLength = Float32Array.length
 const Float32ArrayName = Float32Array.name
-const Float32ArrayPrototype = cloneSafe(Float32Array.prototype)
+const Float32ArrayPrototype = Float32Array.prototype
+const Float32ArrayPrototypeBYTES_PER_ELEMENT =
+  Float32Array.prototype.BYTES_PER_ELEMENT
 
 const Float64ArrayBYTES_PER_ELEMENT = Float64Array.BYTES_PER_ELEMENT
 const Float64ArrayLength = Float64Array.length
 const Float64ArrayName = Float64Array.name
-const Float64ArrayPrototype = cloneSafe(Float64Array.prototype)
+const Float64ArrayPrototype = Float64Array.prototype
+const Float64ArrayPrototypeBYTES_PER_ELEMENT =
+  Float64Array.prototype.BYTES_PER_ELEMENT
 
 const FunctionLength = Function.length
 const FunctionName = Function.name
 const FunctionPrototypeApply = uncurryThis(apply)
 const FunctionPrototypeBind = uncurryThis(bind)
 const FunctionPrototypeToString = uncurryThis(Function.prototype.toString)
+const FunctionPrototypeGetArguments = uncurryGetter(
+  Function.prototype,
+  'arguments'
+)
+const FunctionPrototypeGetCaller = uncurryGetter(
+  Function.prototype,
+  'caller'
+)
+const FunctionPrototypeLength = Function.prototype.length
+const FunctionPrototypeName = Function.prototype.name
+const FunctionPrototypeSetArguments = uncurrySetter(
+  Function.prototype,
+  'arguments'
+)
+const FunctionPrototypeSetCaller = uncurrySetter(
+  Function.prototype,
+  'caller'
+)
+const FunctionPrototypeSymbolHasInstance = uncurryThis(
+  Function.prototype[Symbol.hasInstance]
+)
 
 const Int16ArrayBYTES_PER_ELEMENT = Int16Array.BYTES_PER_ELEMENT
 const Int16ArrayLength = Int16Array.length
 const Int16ArrayName = Int16Array.name
-const Int16ArrayPrototype = cloneSafe(Int16Array.prototype)
+const Int16ArrayPrototype = Int16Array.prototype
+const Int16ArrayPrototypeBYTES_PER_ELEMENT =
+  Int16Array.prototype.BYTES_PER_ELEMENT
 
 const Int32ArrayBYTES_PER_ELEMENT = Int32Array.BYTES_PER_ELEMENT
 const Int32ArrayLength = Int32Array.length
 const Int32ArrayName = Int32Array.name
-const Int32ArrayPrototype = cloneSafe(Int32Array.prototype)
+const Int32ArrayPrototype = Int32Array.prototype
+const Int32ArrayPrototypeBYTES_PER_ELEMENT =
+  Int32Array.prototype.BYTES_PER_ELEMENT
 
 const Int8ArrayLength = Int8Array.length
 const Int8ArrayName = Int8Array.name
-const Int8ArrayPrototype = cloneSafe(Int8Array.prototype)
+const Int8ArrayPrototype = Int8Array.prototype
 const Int8ArrayBYTES_PER_ELEMENT = Int8Array.BYTES_PER_ELEMENT
+const Int8ArrayPrototypeBYTES_PER_ELEMENT =
+  Int8Array.prototype.BYTES_PER_ELEMENT
 
-const JSON = cloneSafe(JSON_)
+const JSON = JSON_
 const JSONParse = staticCall(JSON.parse)
 const JSONStringify = staticCall(JSON.stringify)
 const JSONSymbolToStringTag = 'JSON'
 
 const MapLength = Map.length
+const MapGetSymbolSpecies = uncurryGetter(Map, Symbol.species)
 const MapName = Map.name
-const MapPrototype = cloneSafe(Map.prototype)
+
+const MapPrototype = Map.prototype
 const MapPrototypeGet = uncurryThis(Map.prototype.get)
 const MapPrototypeSet = uncurryThis(Map.prototype.set)
+const MapPrototypeSymbolIterator = uncurryMethod(
+  Map.prototype,
+  Symbol.iterator
+)
+const MapPrototypeSymbolToStringTag = Map.prototype[Symbol.toStringTag]
 const MapPrototypeHas = uncurryThis(Map.prototype.has)
 const MapPrototypeDelete = uncurryThis(Map.prototype.delete)
 const MapPrototypeClear = uncurryThis(Map.prototype.clear)
@@ -1278,7 +1699,7 @@ const MapPrototypeKeys = uncurryThis(Map.prototype.keys)
 const MapPrototypeValues = uncurryThis(Map.prototype.values)
 const MapPrototypeGetSize = uncurryGetter(Map.prototype, 'size')
 
-const Math = cloneSafe(Math_)
+const Math = Math_
 const MathAbs = Math.abs
 const MathAcos = Math.acos
 const MathAcosh = Math.acosh
@@ -1298,6 +1719,7 @@ const MathExpm1 = Math.expm1
 const MathFloor = Math.floor
 const MathFround = Math.fround
 const MathHypot = Math.hypot
+const MathHypotApply = staticApply(Math.hypot)
 const MathImul = Math.imul
 const MathLN10 = Math.LN10
 const MathLN2 = Math.LN2
@@ -1310,6 +1732,7 @@ const MathLog = Math.log
 const MathMax = Math.max
 const MathMaxApply = staticApply(Math.max)
 const MathMin = Math.min
+const MathMinApply = staticApply(Math.min)
 const MathPI = Math.PI
 const MathPow = Math.pow
 const MathRandom = Math.random
@@ -1320,6 +1743,7 @@ const MathSign = Math.sign
 const MathSin = Math.sin
 const MathSinh = Math.sinh
 const MathSqrt = Math.sqrt
+const MathSymbolToStringTag = Math[Symbol.toStringTag]
 const MathTan = Math.tan
 const MathTanh = Math.tanh
 const MathTrunc = Math.trunc
@@ -1340,7 +1764,7 @@ const NumberName = Number.name
 const NumberPOSITIVE_INFINITY = Number.POSITIVE_INFINITY
 const NumberParseFloat = staticCall(Number.parseFloat)
 const NumberParseInt = staticCall(Number.parseInt)
-const NumberPrototype = cloneSafe(Number.prototype)
+const NumberPrototype = Number.prototype
 const NumberPrototypeToExponential = uncurryThis(
   Number.prototype.toExponential
 )
@@ -1356,7 +1780,7 @@ const NumberPrototypeValueOf = uncurryThis(Number.prototype.valueOf)
 
 const ObjectLength = OBJECT.length
 const ObjectName = OBJECT.name
-const ObjectPrototype = cloneSafe(OBJECT.prototype)
+const ObjectPrototype = OBJECT.prototype
 const ObjectAssign = staticCall(OBJECT.assign)
 const ObjectGetOwnPropertyDescriptor = staticCall(
   OBJECT.getOwnPropertyDescriptor
@@ -1370,6 +1794,10 @@ const ObjectGetOwnPropertySymbols = staticCall(
 )
 const ObjectIs = staticCall(OBJECT.is)
 const ObjectPreventExtensions = staticCall(OBJECT.preventExtensions)
+const ObjectPrototypeGet__proto__ = uncurryGetter(
+  Object.prototype,
+  '__proto__' as keyof Object
+)
 const ObjectSeal = staticCall(OBJECT.seal)
 const ObjectCreate = staticCall(OBJECT.create)
 const ObjectDefineProperties = staticCall(OBJECT.defineProperties)
@@ -1377,6 +1805,10 @@ const ObjectDefineProperty = staticCall(OBJECT.defineProperty)
 const ObjectFreeze = staticCall(OBJECT.freeze)
 const ObjectGetPrototypeOf = staticCall(OBJECT.getPrototypeOf)
 const ObjectSetPrototypeOf = staticCall(OBJECT.setPrototypeOf)
+const ObjectPrototypeSet__proto__ = uncurrySetter(
+  Object.prototype,
+  '__proto__' as keyof Object
+)
 const ObjectIsExtensible = staticCall(OBJECT.isExtensible)
 const ObjectIsFrozen = staticCall(OBJECT.isFrozen)
 const ObjectIsSealed = staticCall(OBJECT.isSealed)
@@ -1418,23 +1850,34 @@ const ObjectPrototypeToLocaleString = uncurryThis(
 const PromiseAll = Promise.all
 const PromiseAllSettled = Promise.allSettled
 const PromiseAny = Promise.any
+const PromiseGetSymbolSpecies = uncurryGetter(Promise, Symbol.species)
 const PromiseLength = Promise.length
 const PromiseName = Promise.name
 const PromisePrototype = Promise.prototype
 const PromisePrototypeCatch = uncurryThis(Promise.prototype.catch)
 const PromisePrototypeFinally = uncurryThis(Promise.prototype.finally)
+const PromisePrototypeSymbolToStringTag =
+  Promise.prototype[Symbol.toStringTag]
 const PromisePrototypeThen = uncurryThis(Promise.prototype.then)
 const PromiseRace = Promise.race
 const PromiseReject = Promise.reject
 const PromiseResolve = Promise.resolve
 
+const ProxyLength = Proxy.length
+const ProxyName = Proxy.name
+const ProxyRevocable = staticCall(Proxy.revocable)
+
 const RangeErrorLength = RangeError.length
 const RangeErrorName = RangeError.name
-const RangeErrorPrototype = cloneSafe(RangeError.prototype)
+const RangeErrorPrototype = RangeError.prototype
+const RangeErrorPrototypeMessage = RangeError.prototype.message
+const RangeErrorPrototypeName = RangeError.prototype.name
 
 const ReferenceErrorLength = ReferenceError.length
 const ReferenceErrorName = ReferenceError.name
-const ReferenceErrorPrototype = cloneSafe(ReferenceError.prototype)
+const ReferenceErrorPrototype = ReferenceError.prototype
+const ReferenceErrorPrototypeMessage = ReferenceError.prototype.message
+const ReferenceErrorPrototypeName = ReferenceError.prototype.name
 
 const ReflectApply = SafeReflect.apply
 const ReflectConstruct = SafeReflect.construct
@@ -1450,10 +1893,51 @@ const ReflectOwnKeys = SafeReflect.ownKeys
 const ReflectPreventExtensions = SafeReflect.preventExtensions
 const ReflectSet = SafeReflect.set
 const ReflectSetPrototypeOf = SafeReflect.setPrototypeOf
+const ReflectSymbolToStringTag = 'Reflect'
+
+const RegExpGet$1 = uncurryGetter(RegExp, '$1')
+const RegExpSet$1 = uncurrySetter(RegExp, '$1')
+const RegExpGet$2 = uncurryGetter(RegExp, '$2')
+const RegExpSet$2 = uncurrySetter(RegExp, '$2')
+const RegExpGet$3 = uncurryGetter(RegExp, '$3')
+const RegExpSet$3 = uncurrySetter(RegExp, '$3')
+const RegExpGet$4 = uncurryGetter(RegExp, '$4')
+const RegExpSet$4 = uncurrySetter(RegExp, '$4')
+const RegExpGet$5 = uncurryGetter(RegExp, '$5')
+const RegExpSet$5 = uncurrySetter(RegExp, '$5')
+const RegExpGet$6 = uncurryGetter(RegExp, '$6')
+const RegExpSet$6 = uncurrySetter(RegExp, '$6')
+const RegExpGet$7 = uncurryGetter(RegExp, '$7')
+const RegExpSet$7 = uncurrySetter(RegExp, '$7')
+const RegExpGet$8 = uncurryGetter(RegExp, '$8')
+const RegExpSet$8 = uncurrySetter(RegExp, '$8')
+const RegExpGet$9 = uncurryGetter(RegExp, '$9')
+const RegExpSet$9 = uncurrySetter(RegExp, '$9')
+const RegExpGet$_ = uncurryGetter(RegExp, '$_')
+const RegExpSet$_ = uncurrySetter(RegExp, '$_')
+const RegExpGetInput = uncurryGetter(RegExp, 'input')
+const RegExpSetInput = uncurrySetter(RegExp, 'input')
+const RegExpGetLastMatch = uncurryGetter(RegExp, 'lastMatch')
+const RegExpSetLastMatch = uncurrySetter(RegExp, 'lastMatch')
+const RegExpGetLastParen = uncurryGetter(RegExp, 'lastParen')
+const RegExpSetLastParen = uncurrySetter(RegExp, 'lastParen')
+const RegExpGetLeftContext = uncurryGetter(RegExp, 'leftContext')
+const RegExpSetLeftContext = uncurrySetter(RegExp, 'leftContext')
+const RegExpGetRightContext = uncurryGetter(RegExp, 'rightContext')
+const RegExpSetRightContext = uncurrySetter(RegExp, 'rightContext')
+const RegExpGetDollarAmp = uncurryGetter(RegExp, '$&')
+const RegExpSetDollarAmp = uncurrySetter(RegExp, '$&')
+const RegExpGetDollarSquo = uncurryGetter(RegExp, "$'")
+const RegExpSetDollarSquo = uncurrySetter(RegExp, "$'")
+const RegExpGetDollarPlus = uncurryGetter(RegExp, '$+')
+const RegExpSetDollarPlus = uncurrySetter(RegExp, '$+')
+const RegExpGetDollarTick = uncurryGetter(RegExp, '$`')
+const RegExpSetDollarTick = uncurrySetter(RegExp, '$`')
+const RegExpGetSymbolSpecies = uncurryGetter(RegExp, Symbol.species)
 
 const RegExpLength = RegExp.length
 const RegExpName = RegExp.name
-const RegExpPrototype = cloneSafe(RegExp.prototype)
+const RegExpPrototype = RegExp.prototype
 const RegExpPrototypeExec = uncurryThis(RegExp.prototype.exec)
 const RegExpPrototypeCompile = uncurryThis(RegExp.prototype.compile)
 const RegExpPrototypeToString = uncurryThis(RegExp.prototype.toString)
@@ -1461,6 +1945,10 @@ const RegExpPrototypeTest = uncurryThis(RegExp.prototype.test)
 const RegExpPrototypeGetDotAll = uncurryGetter(RegExp.prototype, 'dotAll')
 const RegExpPrototypeGetFlags = uncurryGetter(RegExp.prototype, 'flags')
 const RegExpPrototypeGetGlobal = uncurryGetter(RegExp.prototype, 'global')
+const RegExpPrototypeGetHasIndices = uncurryGetter(
+  RegExp.prototype as RegExp & { hasIndices?: boolean },
+  'hasIndices'
+)
 const RegExpPrototypeGetIgnoreCase = uncurryGetter(
   RegExp.prototype,
   'ignoreCase'
@@ -1475,10 +1963,26 @@ const RegExpPrototypeGetUnicode = uncurryGetter(
   RegExp.prototype,
   'unicode'
 )
+const RegExpPrototypeSymbolMatch = uncurryThis(
+  RegExp.prototype[Symbol.match]
+)
+const RegExpPrototypeSymbolMatchAll = uncurryThis(
+  RegExp.prototype[Symbol.matchAll]
+)
+const RegExpPrototypeSymbolReplace = uncurryThis(
+  RegExp.prototype[Symbol.replace]
+)
+const RegExpPrototypeSymbolSearch = uncurryThis(
+  RegExp.prototype[Symbol.search]
+)
+const RegExpPrototypeSymbolSplit = uncurryThis(
+  RegExp.prototype[Symbol.split]
+)
 
+const SetGetSymbolSpecies = uncurryGetter(Set, Symbol.species)
 const SetLength = Set.length
 const SetName = Set.name
-const SetPrototype = cloneSafe(Set.prototype)
+const SetPrototype = Set.prototype
 const SetPrototypeHas = uncurryThis(Set.prototype.has)
 const SetPrototypeAdd = uncurryThis(Set.prototype.add)
 const SetPrototypeDelete = uncurryThis(Set.prototype.delete)
@@ -1487,11 +1991,16 @@ const SetPrototypeEntries = uncurryThis(Set.prototype.entries)
 const SetPrototypeForEach = uncurryThis(Set.prototype.forEach)
 const SetPrototypeValues = uncurryThis(Set.prototype.values)
 const SetPrototypeKeys = uncurryThis(Set.prototype.keys)
+const SetPrototypeSymbolIterator = uncurryThis(
+  Set.prototype[Symbol.iterator]
+)
+const SetPrototypeSymbolToStringTag = Set.prototype[Symbol.toStringTag]
+
 const SetPrototypeGetSize = uncurryGetter(Set.prototype, 'size')
 
 const StringLength = String.length
 const StringName = String.name
-const StringPrototype = cloneSafe(String.prototype)
+const StringPrototype = String.prototype
 const StringFromCharCode = String.fromCharCode
 const StringFromCharCodeApply = staticApply(String.fromCharCode)
 const StringFromCodePoint = String.fromCodePoint
@@ -1507,6 +2016,7 @@ const StringPrototypeCodePointAt = uncurryThis(
   String.prototype.codePointAt
 )
 const StringPrototypeConcat = uncurryThis(String.prototype.concat)
+const StringPrototypeConcatApply = applyBind(String.prototype.concat)
 const StringPrototypeEndsWith = uncurryThis(String.prototype.endsWith)
 const StringPrototypeFontcolor = uncurryThis(String.prototype.fontcolor)
 const StringPrototypeFontsize = uncurryThis(String.prototype.fontsize)
@@ -1517,6 +2027,7 @@ const StringPrototypeItalics = uncurryThis(String.prototype.italics)
 const StringPrototypeLastIndexOf = uncurryThis(
   String.prototype.lastIndexOf
 )
+const StringPrototypeLength = String.prototype.length
 const StringPrototypeLink = uncurryThis(String.prototype.link)
 const StringPrototypeLocaleCompare = uncurryThis(
   String.prototype.localeCompare
@@ -1544,6 +2055,9 @@ const StringPrototypeTrimStart = uncurryThis(String.prototype.trimStart)
 const StringPrototypeTrimLeft = uncurryThis(String.prototype.trimLeft)
 const StringPrototypeTrimEnd = uncurryThis(String.prototype.trimEnd)
 const StringPrototypeTrimRight = uncurryThis(String.prototype.trimRight)
+const StringPrototypeSymbolIterator = uncurryThis(
+  String.prototype[Symbol.iterator]
+)
 const StringPrototypeToLocaleLowerCase = uncurryThis(
   String.prototype.toLocaleLowerCase
 )
@@ -1559,9 +2073,19 @@ const StringPrototypeToUpperCase = uncurryThis(
 const StringPrototypeValueOf = uncurryThis(String.prototype.valueOf)
 const StringPrototypeReplaceAll = uncurryThis(String.prototype.replaceAll)
 
+const StringIterator = {
+  prototype: Reflect.getPrototypeOf(String.prototype[Symbol.iterator]()),
+}
+const StringIteratorPrototype =
+  StringIterator.prototype as Iterator<string>
+const StringIteratorPrototypeNext = uncurryThis(
+  StringIteratorPrototype.next
+)
+const StringIteratorPrototypeSymbolToStringTag = 'String Iterator'
+
 const SymbolLength = Symbol.length
 const SymbolName = Symbol.name
-const SymbolPrototype = cloneSafe(Symbol.prototype)
+const SymbolPrototype = Symbol.prototype
 const SymbolFor = Symbol.for
 const SymbolKeyFor = Symbol.keyFor
 const SymbolAsyncIterator = Symbol.asyncIterator
@@ -1583,6 +2107,8 @@ const SymbolPrototypeSymbolToPrimitive = uncurryMethod(
   Symbol.prototype,
   Symbol.toPrimitive
 )
+const SymbolPrototypeSymbolToStringTag =
+  Symbol.prototype[Symbol.toStringTag]
 const SymbolPrototypeGetDescription = uncurryGetter(
   Symbol.prototype,
   'description'
@@ -1590,7 +2116,9 @@ const SymbolPrototypeGetDescription = uncurryGetter(
 
 const SyntaxErrorLength = SyntaxError.length
 const SyntaxErrorName = SyntaxError.name
-const SyntaxErrorPrototype = cloneSafe(SyntaxError.prototype)
+const SyntaxErrorPrototype = SyntaxError.prototype
+const SyntaxErrorPrototypeMessage = SyntaxError.prototype.message
+const SyntaxErrorPrototypeName = SyntaxError.prototype.name
 
 const TypedArrayPrototypeGetBuffer = uncurryGetter(
   TypedArrayPrototype,
@@ -1664,55 +2192,79 @@ const TypedArrayPrototypeValues = uncurryThis(TypedArrayPrototype.values)
 
 const TypeErrorLength = TypeError.length
 const TypeErrorName = TypeError.name
-const TypeErrorPrototype = cloneSafe(TypeError.prototype)
+const TypeErrorPrototype = TypeError.prototype
+const TypeErrorPrototypeMessage = TypeError.prototype.message
+const TypeErrorPrototypeName = TypeError.prototype.name
 
 const URIErrorLength = URIError.length
 const URIErrorName = URIError.name
-const URIErrorPrototype = cloneSafe(URIError.prototype)
+const URIErrorPrototype = URIError.prototype
+const URIErrorPrototypeMessage = URIError.prototype.message
+const URIErrorPrototypeName = URIError.prototype.name
 
 const URLCreateObjectURL = staticCall(URL.createObjectURL)
 const URLRevokeObjectURL = staticCall(URL.revokeObjectURL)
 
 const Uint16ArrayLength = Uint16Array.length
 const Uint16ArrayName = Uint16Array.name
-const Uint16ArrayPrototype = cloneSafe(Uint16Array.prototype)
+const Uint16ArrayPrototype = Uint16Array.prototype
 const Uint16ArrayBYTES_PER_ELEMENT = Uint16Array.BYTES_PER_ELEMENT
+const Uint16ArrayPrototypeBYTES_PER_ELEMENT =
+  Uint16Array.prototype.BYTES_PER_ELEMENT
 
 const Uint32ArrayLength = Uint32Array.length
 const Uint32ArrayName = Uint32Array.name
-const Uint32ArrayPrototype = cloneSafe(Uint32Array.prototype)
+const Uint32ArrayPrototype = Uint32Array.prototype
 const Uint32ArrayBYTES_PER_ELEMENT = Uint32Array.BYTES_PER_ELEMENT
+const Uint32ArrayPrototypeBYTES_PER_ELEMENT =
+  Uint32Array.prototype.BYTES_PER_ELEMENT
 
 const Uint8ArrayLength = Uint8Array.length
 const Uint8ArrayName = Uint8Array.name
-const Uint8ArrayPrototype = cloneSafe(Uint8Array.prototype)
+const Uint8ArrayPrototype = Uint8Array.prototype
 const Uint8ArrayBYTES_PER_ELEMENT = Uint8Array.BYTES_PER_ELEMENT
+const Uint8ArrayPrototypeBYTES_PER_ELEMENT =
+  Uint8Array.prototype.BYTES_PER_ELEMENT
 
 const Uint8ClampedArrayLength = Uint8ClampedArray.length
 const Uint8ClampedArrayName = Uint8ClampedArray.name
-const Uint8ClampedArrayPrototype = cloneSafe(Uint8ClampedArray.prototype)
+const Uint8ClampedArrayPrototype = Uint8ClampedArray.prototype
 const Uint8ClampedArrayBYTES_PER_ELEMENT =
   Uint8ClampedArray.BYTES_PER_ELEMENT
+const Uint8ClampedArrayPrototypeBYTES_PER_ELEMENT =
+  Uint8ClampedArray.prototype.BYTES_PER_ELEMENT
 
 const WeakMapLength = WeakMap.length
 const WeakMapName = WeakMap.name
-const WeakMapPrototype = cloneSafe(WeakMap.prototype)
+const WeakMapPrototype = WeakMap.prototype
 const WeakMapPrototypeDelete = uncurryThis(WeakMap.prototype.delete)
 const WeakMapPrototypeGet = uncurryThis(WeakMap.prototype.get)
 const WeakMapPrototypeSet = uncurryThis(WeakMap.prototype.set)
+const WeakMapPrototypeSymbolToStringTag = (
+  WeakMap.prototype as unknown as { [k: symbol]: string }
+)[Symbol.toStringTag]
 const WeakMapPrototypeHas = uncurryThis(WeakMap.prototype.has)
+
+const WeakRefLength = WeakRef.length
+const WeakRefName = WeakRef.length
+const WeakRefPrototype = WeakRef.prototype
+const WeakRefPrototypeDeref = uncurryThis(WeakRef.prototype.deref)
+const WeakRefPrototypeSymbolToStringTag =
+  WeakRef.prototype[Symbol.toStringTag]
 
 const WeakSetLength = WeakSet.length
 const WeakSetName = WeakSet.name
-const WeakSetPrototype = cloneSafe(WeakSet.prototype)
+const WeakSetPrototype = WeakSet.prototype
+const WeakSetPrototypeAdd = uncurryThis(WeakSet.prototype.add)
 const WeakSetPrototypeDelete = uncurryThis(WeakSet.prototype.delete)
 const WeakSetPrototypeHas = uncurryThis(WeakSet.prototype.has)
-const WeakSetPrototypeAdd = uncurryThis(WeakSet.prototype.add)
+const WeakSetPrototypeSymbolToStringTag =
+  WeakSet.prototype[Symbol.toStringTag]
 
-const processCwd = staticCall(PROCESS.cwd)
-const processArgv = [...PROCESS.argv]
-const processExecArgv = [...PROCESS.execArgv]
-const processExecPath = String(PROCESS.execPath)
+const processCwd = staticCall(ogProcess.cwd)
+const processArgv = [...ogProcess.argv]
+const processExecArgv = [...ogProcess.execArgv]
+const processExecPath = String(ogProcess.execPath)
 const processEnv = new Proxy(ogProcess.env, {
   get: (_: any, k: string) => ogProcess.env[k],
   set: (_: any, k: string, v: any) => {
@@ -1724,42 +2276,42 @@ const processEnv = new Proxy(ogProcess.env, {
     return true
   },
 })
-const processArgv0 = String(PROCESS.argv0)
-const processPid = Number(PROCESS.pid)
-const processPpid = Number(PROCESS.ppid)
-const processTitle = String(PROCESS.title)
-const processVersion = String(PROCESS.version)
+const processArgv0 = String(ogProcess.argv0)
+const processPid = Number(ogProcess.pid)
+const processPpid = Number(ogProcess.ppid)
+const processTitle = String(ogProcess.title)
+const processVersion = String(ogProcess.version)
 // TODO: test when process is clobbered, that this all still works kinda
 /* c8 ignore start */
-const processVersions = Object.freeze(cloneSafe(PROCESS.versions || {}))
-const processArch = String(PROCESS.arch)
-const processPlatform = String(PROCESS.platform)
-const processRelease = Object.freeze(cloneSafe(PROCESS.release || {}))
+const processVersions = Object.freeze(cloneSafe(ogProcess.versions || {}))
+const processArch = String(ogProcess.arch)
+const processPlatform = String(ogProcess.platform)
+const processRelease = Object.freeze(cloneSafe(ogProcess.release || {}))
 const processModuleLoadList = Object.freeze([
-  ...(PROCESS.moduleLoadList || []).map(s => String(s)),
+  ...(ogProcess.moduleLoadList || []).map(s => String(s)),
 ])
 /* c8 ignore stop */
-const processFeatures = Object.freeze(cloneSafe(PROCESS.features))
-const processNextTick = staticCall(PROCESS.nextTick)
-const processAbort = staticCall(PROCESS.abort)
-const processUmask = staticCall(PROCESS.umask)
-const processsInitgroups = maybeStaticCall(PROCESS.initgroups)
-const processSetgroups = maybeStaticCall(PROCESS.setgroups)
-const processSetuid = maybeStaticCall(PROCESS.setuid)
-const processSetgid = maybeStaticCall(PROCESS.setgid)
-const processSeteuid = maybeStaticCall(PROCESS.seteuid)
-const processSetegid = maybeStaticCall(PROCESS.setegid)
+const processFeatures = Object.freeze(cloneSafe(ogProcess.features))
+const processNextTick = staticCall(ogProcess.nextTick)
+const processAbort = staticCall(ogProcess.abort)
+const processUmask = staticCall(ogProcess.umask)
+const processsInitgroups = maybeStaticCall(ogProcess.initgroups)
+const processSetgroups = maybeStaticCall(ogProcess.setgroups)
+const processSetuid = maybeStaticCall(ogProcess.setuid)
+const processSetgid = maybeStaticCall(ogProcess.setgid)
+const processSeteuid = maybeStaticCall(ogProcess.seteuid)
+const processSetegid = maybeStaticCall(ogProcess.setegid)
 const processSetSourceMapsEnabled = maybeStaticCall(
-  PROCESS.setSourceMapsEnabled
+  ogProcess.setSourceMapsEnabled
 )
 const processSetUncaughtExceptionCaptureCallback = staticCall(
-  PROCESS.setUncaughtExceptionCaptureCallback
+  ogProcess.setUncaughtExceptionCaptureCallback
 )
 const processHasUncaughtExceptionCaptureCallback = staticCall(
-  PROCESS.hasUncaughtExceptionCaptureCallback
+  ogProcess.hasUncaughtExceptionCaptureCallback
 )
-const processEmitWarning = bind.bind(PROCESS.emitWarning, PROCESS)
-const processDebugPort = Number(PROCESS.debugPort)
+const processEmitWarning = bind.bind(ogProcess.emitWarning, ogProcess)
+const processDebugPort = Number(ogProcess.debugPort)
 
 const PRIMORDIALS = OBJECT.defineProperties(
   OBJECT.assign(OBJECT.create(null) as {}, {
@@ -1769,6 +2321,7 @@ const PRIMORDIALS = OBJECT.defineProperties(
     staticApply,
     uncurryThis,
     uncurryGetter,
+    uncurrySetter,
     uncurryMethod,
     staticCall,
     maybeStaticCall,
@@ -1785,6 +2338,7 @@ const PRIMORDIALS = OBJECT.defineProperties(
     encodeURI,
     encodeURIComponent,
     escape,
+    eval: eval_,
     unescape,
 
     AggregateError,
@@ -1832,6 +2386,7 @@ const PRIMORDIALS = OBJECT.defineProperties(
     ArrayPrototypeSort,
     ArrayPrototypeSplice,
     ArrayPrototypeSymbolIterator,
+    ArrayPrototypeSymbolUnscopables,
     ArrayPrototypeToLocaleString,
     ArrayPrototypeToString,
     ArrayPrototypeUnshift,
@@ -1853,6 +2408,8 @@ const PRIMORDIALS = OBJECT.defineProperties(
     ArrayIteratorPrototype,
     ArrayIteratorPrototypeNext,
     ArrayIteratorPrototypeSymbolToStringTag,
+
+    AsyncIteratorPrototype,
 
     BigInt,
     BigIntAsIntN,
@@ -1891,6 +2448,7 @@ const PRIMORDIALS = OBJECT.defineProperties(
     DataViewName,
     DataViewPrototype,
     DataViewPrototypeGetBigInt64,
+    DataViewPrototypeGetBigUint64,
     DataViewPrototypeGetBuffer,
     DataViewPrototypeGetByteLength,
     DataViewPrototypeGetByteOffset,
@@ -1912,31 +2470,100 @@ const PRIMORDIALS = OBJECT.defineProperties(
     DataViewPrototypeSetUint16,
     DataViewPrototypeSetUint32,
     DataViewPrototypeSetUint8,
-    DataViewPrototypeGetBigUint64,
+    DataViewPrototypeSymbolToStringTag,
+
+    Date,
+    DateLength,
+    DateName,
+    DateNow,
+    DateParse,
+    DatePrototype,
+    DatePrototypeGetDate,
+    DatePrototypeGetDay,
+    DatePrototypeGetFullYear,
+    DatePrototypeGetHours,
+    DatePrototypeGetMilliseconds,
+    DatePrototypeGetMinutes,
+    DatePrototypeGetMonth,
+    DatePrototypeGetSeconds,
+    DatePrototypeGetTime,
+    DatePrototypeGetTimezoneOffset,
+    DatePrototypeGetUTCDate,
+    DatePrototypeGetUTCDay,
+    DatePrototypeGetUTCFullYear,
+    DatePrototypeGetUTCHours,
+    DatePrototypeGetUTCMilliseconds,
+    DatePrototypeGetUTCMinutes,
+    DatePrototypeGetUTCMonth,
+    DatePrototypeGetUTCSeconds,
+    DatePrototypeGetYear,
+    DatePrototypeSetDate,
+    DatePrototypeSetFullYear,
+    DatePrototypeSetHours,
+    DatePrototypeSetMilliseconds,
+    DatePrototypeSetMinutes,
+    DatePrototypeSetMonth,
+    DatePrototypeSetSeconds,
+    DatePrototypeSetTime,
+    DatePrototypeSetUTCDate,
+    DatePrototypeSetUTCFullYear,
+    DatePrototypeSetUTCHours,
+    DatePrototypeSetUTCMilliseconds,
+    DatePrototypeSetUTCMinutes,
+    DatePrototypeSetUTCMonth,
+    DatePrototypeSetUTCSeconds,
+    DatePrototypeSetYear,
+    DatePrototypeSymbolToPrimitive,
+    DatePrototypeToDateString,
+    DatePrototypeToGMTString,
+    DatePrototypeToISOString,
+    DatePrototypeToJSON,
+    DatePrototypeToLocaleDateString,
+    DatePrototypeToLocaleString,
+    DatePrototypeToLocaleTimeString,
+    DatePrototypeToString,
+    DatePrototypeToTimeString,
+    DatePrototypeToUTCString,
+    DatePrototypeValueOf,
+    DateUTC,
 
     Error,
     ErrorCaptureStackTrace,
     ErrorLength,
     ErrorName,
     ErrorPrototype,
+    ErrorPrototypeMessage,
+    ErrorPrototypeName,
     ErrorPrototypeToString,
 
     EvalError,
     EvalErrorLength,
     EvalErrorName,
     EvalErrorPrototype,
+    EvalErrorPrototypeMessage,
+    EvalErrorPrototypeName,
+
+    FinalizationRegistry,
+    FinalizationRegistryLength,
+    FinalizationRegistryName,
+    FinalizationRegistryPrototype,
+    FinalizationRegistryPrototypeRegister,
+    FinalizationRegistryPrototypeSymbolToStringTag,
+    FinalizationRegistryPrototypeUnregister,
 
     Float32Array,
     Float32ArrayBYTES_PER_ELEMENT,
     Float32ArrayLength,
     Float32ArrayName,
     Float32ArrayPrototype,
+    Float32ArrayPrototypeBYTES_PER_ELEMENT,
 
     Float64Array,
     Float64ArrayBYTES_PER_ELEMENT,
     Float64ArrayLength,
     Float64ArrayName,
     Float64ArrayPrototype,
+    Float64ArrayPrototypeBYTES_PER_ELEMENT,
 
     Function,
     FunctionLength,
@@ -1945,6 +2572,13 @@ const PRIMORDIALS = OBJECT.defineProperties(
     FunctionPrototypeApply,
     FunctionPrototypeBind,
     FunctionPrototypeCall,
+    FunctionPrototypeGetArguments,
+    FunctionPrototypeGetCaller,
+    FunctionPrototypeLength,
+    FunctionPrototypeName,
+    FunctionPrototypeSetArguments,
+    FunctionPrototypeSetCaller,
+    FunctionPrototypeSymbolHasInstance,
     FunctionPrototypeToString,
 
     Int16Array,
@@ -1952,17 +2586,20 @@ const PRIMORDIALS = OBJECT.defineProperties(
     Int16ArrayLength,
     Int16ArrayName,
     Int16ArrayPrototype,
+    Int16ArrayPrototypeBYTES_PER_ELEMENT,
 
     Int32Array,
     Int32ArrayBYTES_PER_ELEMENT,
     Int32ArrayLength,
     Int32ArrayName,
     Int32ArrayPrototype,
+    Int32ArrayPrototypeBYTES_PER_ELEMENT,
 
     Int8Array,
     Int8ArrayLength,
     Int8ArrayName,
     Int8ArrayPrototype,
+    Int8ArrayPrototypeBYTES_PER_ELEMENT,
     Int8ArrayBYTES_PER_ELEMENT,
 
     JSON,
@@ -1971,11 +2608,14 @@ const PRIMORDIALS = OBJECT.defineProperties(
     JSONSymbolToStringTag,
 
     Map,
+    MapGetSymbolSpecies,
     MapLength,
     MapName,
     MapPrototype,
     MapPrototypeGet,
     MapPrototypeSet,
+    MapPrototypeSymbolIterator,
+    MapPrototypeSymbolToStringTag,
     MapPrototypeHas,
     MapPrototypeDelete,
     MapPrototypeClear,
@@ -2005,6 +2645,7 @@ const PRIMORDIALS = OBJECT.defineProperties(
     MathFloor,
     MathFround,
     MathHypot,
+    MathHypotApply,
     MathImul,
     MathLN10,
     MathLN2,
@@ -2017,6 +2658,7 @@ const PRIMORDIALS = OBJECT.defineProperties(
     MathMax,
     MathMaxApply,
     MathMin,
+    MathMinApply,
     MathPI,
     MathPow,
     MathRandom,
@@ -2027,6 +2669,7 @@ const PRIMORDIALS = OBJECT.defineProperties(
     MathSin,
     MathSinh,
     MathSqrt,
+    MathSymbolToStringTag,
     MathTan,
     MathTanh,
     MathTrunc,
@@ -2057,66 +2700,77 @@ const PRIMORDIALS = OBJECT.defineProperties(
     NumberPrototypeValueOf,
 
     Object,
-    ObjectLength,
-    ObjectName,
-    ObjectPrototype,
     ObjectAssign,
+    ObjectCreate,
+    ObjectDefineProperties,
+    ObjectDefineProperty,
+    ObjectEntries,
+    ObjectFreeze,
+    ObjectFromEntries,
     ObjectGetOwnPropertyDescriptor,
     ObjectGetOwnPropertyDescriptors,
     ObjectGetOwnPropertyNames,
     ObjectGetOwnPropertySymbols,
-    ObjectIs,
-    ObjectPreventExtensions,
-    ObjectSeal,
-    ObjectCreate,
-    ObjectDefineProperties,
-    ObjectDefineProperty,
-    ObjectFreeze,
     ObjectGetPrototypeOf,
-    ObjectSetPrototypeOf,
+    ObjectIs,
     ObjectIsExtensible,
     ObjectIsFrozen,
     ObjectIsSealed,
     ObjectKeys,
-    ObjectEntries,
-    ObjectFromEntries,
-    ObjectValues,
-    ObjectPrototype__defineGetter__,
-    ObjectPrototype__defineSetter__,
+    ObjectLength,
+    ObjectName,
+    ObjectPreventExtensions,
+    ObjectPrototype,
+    ObjectPrototypeGet__proto__,
     ObjectPrototypeHasOwnProperty,
-    ObjectPrototype__lookupGetter__,
-    ObjectPrototype__lookupSetter__,
     ObjectPrototypeIsPrototypeOf,
     ObjectPrototypePropertyIsEnumerable,
+    ObjectPrototypeSet__proto__,
+    ObjectPrototypeToLocaleString,
     ObjectPrototypeToString,
     ObjectPrototypeValueOf,
-    ObjectPrototypeToLocaleString,
+    ObjectPrototype__defineGetter__,
+    ObjectPrototype__defineSetter__,
+    ObjectPrototype__lookupGetter__,
+    ObjectPrototype__lookupSetter__,
+    ObjectSeal,
+    ObjectSetPrototypeOf,
+    ObjectValues,
 
     Promise,
     PromiseAll,
     PromiseAllSettled,
     PromiseAny,
+    PromiseGetSymbolSpecies,
     PromiseLength,
     PromiseName,
     PromisePrototype,
     PromisePrototypeCatch,
     PromisePrototypeFinally,
+    PromisePrototypeSymbolToStringTag,
     PromisePrototypeThen,
     PromiseRace,
     PromiseReject,
     PromiseResolve,
 
     Proxy,
+    ProxyLength,
+    ProxyName,
+    ProxyRevocable,
 
     RangeError,
     RangeErrorLength,
     RangeErrorName,
     RangeErrorPrototype,
+    RangeErrorPrototypeMessage,
+    RangeErrorPrototypeName,
 
     ReferenceError,
     ReferenceErrorLength,
     ReferenceErrorName,
     ReferenceErrorPrototype,
+    ReferenceErrorPrototypeMessage,
+    ReferenceErrorPrototypeName,
 
     Reflect,
     ReflectApply,
@@ -2132,25 +2786,82 @@ const PRIMORDIALS = OBJECT.defineProperties(
     ReflectPreventExtensions,
     ReflectSet,
     ReflectSetPrototypeOf,
+    ReflectSymbolToStringTag,
 
     RegExp,
+    RegExpGet$1,
+    RegExpGet$2,
+    RegExpGet$3,
+    RegExpGet$4,
+    RegExpGet$5,
+    RegExpGet$6,
+    RegExpGet$7,
+    RegExpGet$8,
+    RegExpGet$9,
+    RegExpGet$_,
+    RegExpGetInput,
+    RegExpGetLastMatch,
+    RegExpGetLastParen,
+    RegExpGetLeftContext,
+    RegExpGetRightContext,
+    RegExpGetSymbolSpecies,
     RegExpLength,
     RegExpName,
     RegExpPrototype,
-    RegExpPrototypeExec,
     RegExpPrototypeCompile,
-    RegExpPrototypeToString,
-    RegExpPrototypeTest,
+    RegExpPrototypeExec,
     RegExpPrototypeGetDotAll,
     RegExpPrototypeGetFlags,
     RegExpPrototypeGetGlobal,
+    RegExpPrototypeGetHasIndices,
     RegExpPrototypeGetIgnoreCase,
     RegExpPrototypeGetMultiline,
     RegExpPrototypeGetSource,
     RegExpPrototypeGetSticky,
     RegExpPrototypeGetUnicode,
+    RegExpPrototypeSymbolMatch,
+    RegExpPrototypeSymbolMatchAll,
+    RegExpPrototypeSymbolReplace,
+    RegExpPrototypeSymbolSearch,
+    RegExpPrototypeSymbolSplit,
+    RegExpPrototypeTest,
+    RegExpPrototypeToString,
+    RegExpSet$1,
+    RegExpSet$2,
+    RegExpSet$3,
+    RegExpSet$4,
+    RegExpSet$5,
+    RegExpSet$6,
+    RegExpSet$7,
+    RegExpSet$8,
+    RegExpSet$9,
+    RegExpSet$_,
+    RegExpSetInput,
+    RegExpSetLastMatch,
+    RegExpSetLastParen,
+    RegExpSetLeftContext,
+    RegExpSetRightContext,
+
+    RegExpGetDollarSquo,
+    RegExpGetDollarAmp,
+    RegExpGetDollarPlus,
+    RegExpGetDollarTick,
+    RegExpSetDollarSquo,
+    RegExpSetDollarAmp,
+    RegExpSetDollarPlus,
+    RegExpSetDollarTick,
+
+    "RegExpGet$'": RegExpGetDollarSquo,
+    'RegExpGet$&': RegExpGetDollarAmp,
+    'RegExpGet$+': RegExpGetDollarPlus,
+    'RegExpGet$`': RegExpGetDollarTick,
+    "RegExpSet$'": RegExpSetDollarSquo,
+    'RegExpSet$&': RegExpSetDollarAmp,
+    'RegExpSet$+': RegExpSetDollarPlus,
+    'RegExpSet$`': RegExpSetDollarTick,
 
     Set,
+    SetGetSymbolSpecies,
     SetLength,
     SetName,
     SetPrototype,
@@ -2162,6 +2873,8 @@ const PRIMORDIALS = OBJECT.defineProperties(
     SetPrototypeForEach,
     SetPrototypeValues,
     SetPrototypeKeys,
+    SetPrototypeSymbolIterator,
+    SetPrototypeSymbolToStringTag,
     SetPrototypeGetSize,
 
     String,
@@ -2181,6 +2894,7 @@ const PRIMORDIALS = OBJECT.defineProperties(
     StringPrototypeCharCodeAt,
     StringPrototypeCodePointAt,
     StringPrototypeConcat,
+    StringPrototypeConcatApply,
     StringPrototypeEndsWith,
     StringPrototypeFontcolor,
     StringPrototypeFontsize,
@@ -2189,6 +2903,7 @@ const PRIMORDIALS = OBJECT.defineProperties(
     StringPrototypeIndexOf,
     StringPrototypeItalics,
     StringPrototypeLastIndexOf,
+    StringPrototypeLength,
     StringPrototypeLink,
     StringPrototypeLocaleCompare,
     StringPrototypeMatch,
@@ -2214,12 +2929,18 @@ const PRIMORDIALS = OBJECT.defineProperties(
     StringPrototypeTrimLeft,
     StringPrototypeTrimEnd,
     StringPrototypeTrimRight,
+    StringPrototypeSymbolIterator,
     StringPrototypeToLocaleLowerCase,
     StringPrototypeToLocaleUpperCase,
     StringPrototypeToLowerCase,
     StringPrototypeToUpperCase,
     StringPrototypeValueOf,
     StringPrototypeReplaceAll,
+
+    StringIterator,
+    StringIteratorPrototype,
+    StringIteratorPrototypeNext,
+    StringIteratorPrototypeSymbolToStringTag,
 
     Symbol,
     SymbolLength,
@@ -2243,12 +2964,15 @@ const PRIMORDIALS = OBJECT.defineProperties(
     SymbolPrototypeToString,
     SymbolPrototypeValueOf,
     SymbolPrototypeSymbolToPrimitive,
+    SymbolPrototypeSymbolToStringTag,
     SymbolPrototypeGetDescription,
 
     SyntaxError,
     SyntaxErrorLength,
     SyntaxErrorName,
     SyntaxErrorPrototype,
+    SyntaxErrorPrototypeMessage,
+    SyntaxErrorPrototypeName,
 
     TypedArray,
     TypedArrayFrom,
@@ -2294,39 +3018,47 @@ const PRIMORDIALS = OBJECT.defineProperties(
     TypeErrorLength,
     TypeErrorName,
     TypeErrorPrototype,
+    TypeErrorPrototypeMessage,
+    TypeErrorPrototypeName,
 
     URIError,
     URIErrorLength,
     URIErrorName,
     URIErrorPrototype,
+    URIErrorPrototypeMessage,
+    URIErrorPrototypeName,
 
     URL,
     URLCreateObjectURL,
     URLRevokeObjectURL,
 
     Uint16Array,
+    Uint16ArrayBYTES_PER_ELEMENT,
     Uint16ArrayLength,
     Uint16ArrayName,
     Uint16ArrayPrototype,
-    Uint16ArrayBYTES_PER_ELEMENT,
+    Uint16ArrayPrototypeBYTES_PER_ELEMENT,
 
     Uint32Array,
+    Uint32ArrayBYTES_PER_ELEMENT,
     Uint32ArrayLength,
     Uint32ArrayName,
     Uint32ArrayPrototype,
-    Uint32ArrayBYTES_PER_ELEMENT,
+    Uint32ArrayPrototypeBYTES_PER_ELEMENT,
 
     Uint8Array,
+    Uint8ArrayBYTES_PER_ELEMENT,
     Uint8ArrayLength,
     Uint8ArrayName,
     Uint8ArrayPrototype,
-    Uint8ArrayBYTES_PER_ELEMENT,
+    Uint8ArrayPrototypeBYTES_PER_ELEMENT,
 
     Uint8ClampedArray,
+    Uint8ClampedArrayBYTES_PER_ELEMENT,
     Uint8ClampedArrayLength,
     Uint8ClampedArrayName,
     Uint8ClampedArrayPrototype,
-    Uint8ClampedArrayBYTES_PER_ELEMENT,
+    Uint8ClampedArrayPrototypeBYTES_PER_ELEMENT,
 
     WeakMap,
     WeakMapLength,
@@ -2334,16 +3066,25 @@ const PRIMORDIALS = OBJECT.defineProperties(
     WeakMapPrototype,
     WeakMapPrototypeDelete,
     WeakMapPrototypeGet,
-    WeakMapPrototypeSet,
     WeakMapPrototypeHas,
+    WeakMapPrototypeSet,
+    WeakMapPrototypeSymbolToStringTag,
+
+    WeakRef,
+    WeakRefLength,
+    WeakRefName,
+    WeakRefPrototype,
+    WeakRefPrototypeDeref,
+    WeakRefPrototypeSymbolToStringTag,
 
     WeakSet,
     WeakSetLength,
     WeakSetName,
     WeakSetPrototype,
+    WeakSetPrototypeAdd,
     WeakSetPrototypeDelete,
     WeakSetPrototypeHas,
-    WeakSetPrototypeAdd,
+    WeakSetPrototypeSymbolToStringTag,
 
     //////
     // bonus: node core doesn't need to harden these, since it has internal
@@ -2403,7 +3144,7 @@ const PRIMORDIALS = OBJECT.defineProperties(
 
     processReport: {
       enumerable: true,
-      get: () => uncurryGetter(PROCESS, 'report')(PROCESS),
+      get: () => uncurryGetter(PROCESS, 'report')(ogProcess),
     },
 
     processExitCode: {
@@ -2444,18 +3185,18 @@ const PRIMORDIALS = OBJECT.defineProperties(
 
     processStdout: {
       enumerable: true,
-      get: () => uncurryGetter(PROCESS, 'stdout')(PROCESS),
+      get: () => uncurryGetter(PROCESS, 'stdout')(ogProcess),
     },
 
     processStderr: {
       enumerable: true,
-      get: () => uncurryGetter(PROCESS, 'stderr')(PROCESS),
+      get: () => uncurryGetter(PROCESS, 'stderr')(ogProcess),
     },
 
     processAllowedNodeEnvironmentFlags: {
       enumerable: true,
       get: () =>
-        uncurryGetter(PROCESS, 'allowedNodeEnvironmentFlags')(PROCESS),
+        uncurryGetter(PROCESS, 'allowedNodeEnvironmentFlags')(ogProcess),
     },
   }
 )

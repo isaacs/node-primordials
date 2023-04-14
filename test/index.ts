@@ -98,6 +98,11 @@ t.test('uncurryGetter throws if not a getter', t => {
   t.end()
 })
 
+t.test('uncurrySetter throws if not a setter', t => {
+  t.throws(() => primordials.uncurrySetter({ nope: () => {} }, 'nope'))
+  t.end()
+})
+
 t.test('TypedArrayOf', t => {
   const uint8array = primordials.TypedArrayOf(
     primordials.Uint8Array,
