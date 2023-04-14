@@ -1,6 +1,6 @@
 {
   "name": "node-primordials",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A userland port of node:lib/internal/per_context/primordials.js",
   "author": "Isaac Z. Schlueter <i@izs.me> (https://blog.izs.me)",
   "main": "./dist/cjs/index.js",
