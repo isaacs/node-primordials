@@ -1261,7 +1261,25 @@ const SafeReflect = Reflect
 const ogProcess = (
   typeof GLOBALTHIS.process === 'object' && !!GLOBALTHIS.process
     ? GLOBALTHIS.process
-    : {}
+  : {
+    argv: [],
+    argv0: '',
+    execArgv: [],
+    cwd: () => '.',
+    execPath: '',
+    env: {},
+    pid: 0,
+    ppid: 0,
+    title: '',
+    version: '',
+    versions: {},
+    platform: '',
+    release: {},
+    arch: '',
+    moduleLoadList: [],
+    features: {},
+    debugPort: 0,
+  }
 ) as NodeJS.Process & {
   moduleLoadList: string[]
   initgroups?: (user: string | number, extraGroup: string | number) => void
@@ -1799,7 +1817,14 @@ const ObjectPrototypeGet__proto__ = uncurryGetter(
   '__proto__' as keyof Object
 )
 const ObjectSeal = staticCall(OBJECT.seal)
-const ObjectCreate = staticCall(OBJECT.create)
+// TS defines this as an overload by default, but that ends up making
+// both parameters non-optional in the StaticCall type.
+const ObjectCreate = staticCall(
+  OBJECT.create as (
+    o: object | null,
+    properties?: PropertyDescriptorMap & ThisType<any>
+  ) => any
+)
 const ObjectDefineProperties = staticCall(OBJECT.defineProperties)
 const ObjectDefineProperty = staticCall(OBJECT.defineProperty)
 const ObjectFreeze = staticCall(OBJECT.freeze)
@@ -2281,16 +2306,13 @@ const processPid = Number(ogProcess.pid)
 const processPpid = Number(ogProcess.ppid)
 const processTitle = String(ogProcess.title)
 const processVersion = String(ogProcess.version)
-// TODO: test when process is clobbered, that this all still works kinda
-/* c8 ignore start */
-const processVersions = Object.freeze(cloneSafe(ogProcess.versions || {}))
+const processVersions = Object.freeze(cloneSafe(ogProcess.versions))
 const processArch = String(ogProcess.arch)
 const processPlatform = String(ogProcess.platform)
-const processRelease = Object.freeze(cloneSafe(ogProcess.release || {}))
+const processRelease = Object.freeze(cloneSafe(ogProcess.release))
 const processModuleLoadList = Object.freeze([
-  ...(ogProcess.moduleLoadList || []).map(s => String(s)),
+  ...(ogProcess.moduleLoadList).map(s => String(s)),
 ])
-/* c8 ignore stop */
 const processFeatures = Object.freeze(cloneSafe(ogProcess.features))
 const processNextTick = staticCall(ogProcess.nextTick)
 const processAbort = staticCall(ogProcess.abort)
