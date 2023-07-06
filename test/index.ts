@@ -1,6 +1,6 @@
 import t from 'tap'
 import * as primordialsNamed from '../'
-import { primordials } from '../'
+import { primordials, StringPrototypeReplace } from '../'
 
 import { promisify } from 'util'
 const utilPromisifyCustom = promisify.custom
@@ -404,3 +404,9 @@ t.test('maybeStaticCall', t => {
   t.equal(fn, undefined)
   t.end()
 })
+
+t.test('StringPrototypeReplace sanity', t => {
+  t.equal(primordials.StringPrototypeReplace('foo', 'o', 'a'), 'fao');
+  t.equal(StringPrototypeReplace('foo', 'o', 'a'), 'fao');
+  t.end()
+});

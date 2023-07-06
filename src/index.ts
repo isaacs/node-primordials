@@ -1206,7 +1206,7 @@ const uncurryGetter = <O extends object, K extends keyof O, T = O>(
 ): UncurryGetter<O, K, T> => {
   const desc = SafeReflect.getOwnPropertyDescriptor(obj, k)
   if (desc?.get) {
-    return uncurryThis(desc.get)
+    return uncurryThis(desc.get);
   }
   throw new Error('invalid uncurryGetter call: ' + String(k))
 }
@@ -2063,7 +2063,16 @@ const StringPrototypeNormalize = uncurryThis(String.prototype.normalize)
 const StringPrototypePadEnd = uncurryThis(String.prototype.padEnd)
 const StringPrototypePadStart = uncurryThis(String.prototype.padStart)
 const StringPrototypeRepeat = uncurryThis(String.prototype.repeat)
-const StringPrototypeReplace = uncurryThis(String.prototype.replace)
+const StringPrototypeReplace = uncurryThis(String.prototype.replace) as {
+  (self: string, searchValue: string | RegExp, replaceValue: string): string;
+  (self: string, searchValue: string | RegExp, replacer: (substring: string, ...args: any[]) => string): string;
+  (self: string, searchValue: {
+      [Symbol.replace](string: string, replaceValue: string): string;
+  }, replaceValue: string): string;
+  (self: string, searchValue: {
+      [Symbol.replace](string: string, replacer: (substring: string, ...args: any[]) => string): string;
+  }, replacer: (substring: string, ...args: any[]) => string): string;
+} // Fix overload
 const StringPrototypeSearch = uncurryThis(String.prototype.search)
 const StringPrototypeSlice = uncurryThis(String.prototype.slice)
 const StringPrototypeSmall = uncurryThis(String.prototype.small)
