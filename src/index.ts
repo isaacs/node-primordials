@@ -796,6 +796,16 @@ export {
   WeakSetPrototypeHas,
   WeakSetPrototypeSymbolToStringTag,
 
+  //
+  makeSafe,
+  SafeMap,
+  SafeWeakMap,
+  SafeSet,
+  SafeWeakSet,
+  SafeFinalizationRegistry,
+  SafeWeakRef,
+  SafePromise,
+
   //////
   // bonus: node core doesn't need to harden these, since it has internal
   // references to them, but it's very handy when dealing with scenarios
@@ -2363,6 +2373,152 @@ const processHasUncaughtExceptionCaptureCallback = staticCall(
 const processEmitWarning = bind.bind(ogProcess.emitWarning, ogProcess)
 const processDebugPort = Number(ogProcess.debugPort)
 
+const createSafeIterator = <T, TReturn, TNext>(
+  factory: (self: T) => IterableIterator<T>,
+  next: (...args: [] | [TNext]) => IteratorResult<T, TReturn>
+) => {
+  class SafeIterator implements IterableIterator<T> {
+    _iterator: any
+    constructor(iterable: T) {
+      this._iterator = factory(iterable)
+    }
+    next() {
+      return next(this._iterator)
+    }
+    [Symbol.iterator]() {
+      return this
+    }
+    [SymbolIterator]() {
+      return this
+    }
+  }
+  ObjectSetPrototypeOf(SafeIterator.prototype, null)
+  ObjectFreeze(SafeIterator.prototype)
+  ObjectFreeze(SafeIterator)
+  return SafeIterator
+}
+
+const copyProps = (src: object, dest: object) => {
+  ArrayPrototypeForEach(ReflectOwnKeys(src), key => {
+    if (!ReflectGetOwnPropertyDescriptor(dest, key)) {
+      ReflectDefineProperty(dest, key, {
+        __proto__: null,
+        ...ReflectGetOwnPropertyDescriptor(src, key),
+      } as PropertyDescriptor)
+    }
+  })
+}
+
+interface Constractable<T> extends NewableFunction {
+  new (...args: any[]): T
+}
+const makeSafe = <T, C extends Constractable<any>>(unsafe: C, safe: C) => {
+  if (SymbolIterator in unsafe.prototype) {
+    const dummy = new unsafe()
+    let next // We can reuse the same `next` method.
+
+    ArrayPrototypeForEach(ReflectOwnKeys(unsafe.prototype), key => {
+      if (!ReflectGetOwnPropertyDescriptor(safe.prototype, key)) {
+        const desc = ReflectGetOwnPropertyDescriptor(unsafe.prototype, key)
+        if (
+          desc &&
+          typeof desc.value === 'function' &&
+          desc.value.length === 0 &&
+          SymbolIterator in
+            (FunctionPrototypeCall(desc.value, dummy) ?? {})
+        ) {
+          const x: string[] = []
+          const y = x[Symbol.iterator]
+
+          const createIterator = uncurryThis(desc.value) as unknown as (
+            val: T
+          ) => IterableIterator<any>
+          next ??= uncurryThis(createIterator(dummy).next)
+          const SafeIterator = createSafeIterator(createIterator, next)
+          desc.value = function () {
+            return new SafeIterator(this as unknown as T)
+          }
+        }
+        ReflectDefineProperty(safe.prototype, key, {
+          __proto__: null,
+          ...desc,
+        } as PropertyDescriptor)
+      }
+    })
+  } else {
+    copyProps(unsafe.prototype, safe.prototype)
+  }
+  copyProps(unsafe, safe)
+
+  ObjectSetPrototypeOf(safe.prototype, null)
+  ObjectFreeze(safe.prototype)
+  ObjectFreeze(safe)
+  return safe
+}
+const SafeMap = makeSafe(
+  Map,
+  class SafeMap<K, V> extends Map<K, V> {
+    constructor(entries?: readonly (readonly [K, V])[] | null) {
+      super(entries)
+    }
+  }
+)
+const SafeWeakMap = makeSafe(
+  WeakMap,
+  class SafeWeakMap<K extends object, V> extends WeakMap<K, V> {
+    constructor(entries?: readonly [K, V][] | null) {
+      super(entries)
+    }
+  }
+)
+const SafeSet = makeSafe(
+  Set,
+  class SafeSet<T = any> extends Set<T> {
+    constructor(values?: readonly T[] | null) {
+      super(values)
+    }
+  }
+)
+const SafeWeakSet = makeSafe(
+  WeakSet,
+  class SafeWeakSet<T extends object> extends WeakSet<T> {
+    constructor(values?: readonly T[] | null) {
+      super(values)
+    }
+  }
+)
+
+const SafeFinalizationRegistry = makeSafe(
+  FinalizationRegistry,
+  class SafeFinalizationRegistry<T> extends FinalizationRegistry<T> {
+    constructor(cleanupCallback: (heldValue: T) => void) {
+      super(cleanupCallback)
+    }
+  }
+)
+const SafeWeakRef = makeSafe(
+  WeakRef,
+  class SafeWeakRef<T extends object> extends WeakRef<T> {
+    constructor(target: T) {
+      super(target)
+    }
+  }
+)
+
+const SafePromise = makeSafe(
+  Promise,
+  class SafePromise<T> extends Promise<T> {
+    constructor(
+      executor: (
+        resolve: (value: T | PromiseLike<T>) => void,
+        reject: (reason?: any) => void
+      ) => void
+    ) {
+      super(executor)
+    }
+  }
+)
+
 const PRIMORDIALS = OBJECT.defineProperties(
   OBJECT.assign(OBJECT.create(null) as {}, {
     // utilities
@@ -3135,6 +3291,15 @@ const PRIMORDIALS = OBJECT.defineProperties(
     WeakSetPrototypeDelete,
     WeakSetPrototypeHas,
     WeakSetPrototypeSymbolToStringTag,
+
+    makeSafe,
+    SafeMap,
+    SafeWeakMap,
+    SafeSet,
+    SafeWeakSet,
+    SafeFinalizationRegistry,
+    SafeWeakRef,
+    SafePromise,
 
     //////
     // bonus: node core doesn't need to harden these, since it has internal

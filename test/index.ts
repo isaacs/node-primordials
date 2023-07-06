@@ -410,3 +410,47 @@ t.test('StringPrototypeReplace sanity', t => {
   t.equal(StringPrototypeReplace('foo', 'o', 'a'), 'fao')
   t.end()
 })
+
+t.test('makeSafe', t => {
+  const originals = [
+    [Object, undefined],
+    [Map, Map.prototype.has],
+    [Set, Set.prototype.has],
+  ] as const
+  const tamperRunRestore = <T extends (...args: any[]) => any>(fn: T) => {
+    originals.forEach(
+      ([obj]) =>
+        ((obj.prototype as any).has = () => {
+          throw new Error('should not be called')
+        })
+    )
+    const value = fn()
+    originals.forEach(
+      ([obj, original]) => ((obj.prototype as any).has = original)
+    )
+    return value
+  }
+  const map = new primordials.SafeMap()
+  const set = new primordials.SafeSet()
+
+  t.equal(
+    tamperRunRestore(() => map.has('foo')),
+    false
+  )
+  t.equal(
+    tamperRunRestore(() => set.has('foo')),
+    false
+  )
+  map.set('foo', 'bar')
+  set.add('foo')
+  t.equal(
+    tamperRunRestore(() => map.has('foo')),
+    true
+  )
+  t.equal(
+    tamperRunRestore(() => set.has('foo')),
+    true
+  )
+
+  t.end()
+})
