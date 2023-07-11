@@ -1206,7 +1206,7 @@ const uncurryGetter = <O extends object, K extends keyof O, T = O>(
 ): UncurryGetter<O, K, T> => {
   const desc = SafeReflect.getOwnPropertyDescriptor(obj, k)
   if (desc?.get) {
-    return uncurryThis(desc.get);
+    return uncurryThis(desc.get)
   }
   throw new Error('invalid uncurryGetter call: ' + String(k))
 }
@@ -1261,25 +1261,25 @@ const SafeReflect = Reflect
 const ogProcess = (
   typeof GLOBALTHIS.process === 'object' && !!GLOBALTHIS.process
     ? GLOBALTHIS.process
-  : {
-    argv: [],
-    argv0: '',
-    execArgv: [],
-    cwd: () => '.',
-    execPath: '',
-    env: {},
-    pid: 0,
-    ppid: 0,
-    title: '',
-    version: '',
-    versions: {},
-    platform: '',
-    release: {},
-    arch: '',
-    moduleLoadList: [],
-    features: {},
-    debugPort: 0,
-  }
+    : {
+        argv: [],
+        argv0: '',
+        execArgv: [],
+        cwd: () => '.',
+        execPath: '',
+        env: {},
+        pid: 0,
+        ppid: 0,
+        title: '',
+        version: '',
+        versions: {},
+        platform: '',
+        release: {},
+        arch: '',
+        moduleLoadList: [],
+        features: {},
+        debugPort: 0,
+      }
 ) as NodeJS.Process & {
   moduleLoadList: string[]
   initgroups?: (user: string | number, extraGroup: string | number) => void
@@ -2064,14 +2064,33 @@ const StringPrototypePadEnd = uncurryThis(String.prototype.padEnd)
 const StringPrototypePadStart = uncurryThis(String.prototype.padStart)
 const StringPrototypeRepeat = uncurryThis(String.prototype.repeat)
 const StringPrototypeReplace = uncurryThis(String.prototype.replace) as {
-  (self: string, searchValue: string | RegExp, replaceValue: string): string;
-  (self: string, searchValue: string | RegExp, replacer: (substring: string, ...args: any[]) => string): string;
-  (self: string, searchValue: {
-      [Symbol.replace](string: string, replaceValue: string): string;
-  }, replaceValue: string): string;
-  (self: string, searchValue: {
-      [Symbol.replace](string: string, replacer: (substring: string, ...args: any[]) => string): string;
-  }, replacer: (substring: string, ...args: any[]) => string): string;
+  (
+    self: string,
+    searchValue: string | RegExp,
+    replaceValue: string
+  ): string
+  (
+    self: string,
+    searchValue: string | RegExp,
+    replacer: (substring: string, ...args: any[]) => string
+  ): string
+  (
+    self: string,
+    searchValue: {
+      [Symbol.replace](string: string, replaceValue: string): string
+    },
+    replaceValue: string
+  ): string
+  (
+    self: string,
+    searchValue: {
+      [Symbol.replace](
+        string: string,
+        replacer: (substring: string, ...args: any[]) => string
+      ): string
+    },
+    replacer: (substring: string, ...args: any[]) => string
+  ): string
 } // Fix overload
 const StringPrototypeSearch = uncurryThis(String.prototype.search)
 const StringPrototypeSlice = uncurryThis(String.prototype.slice)
@@ -2320,7 +2339,7 @@ const processArch = String(ogProcess.arch)
 const processPlatform = String(ogProcess.platform)
 const processRelease = Object.freeze(cloneSafe(ogProcess.release))
 const processModuleLoadList = Object.freeze([
-  ...(ogProcess.moduleLoadList).map(s => String(s)),
+  ...ogProcess.moduleLoadList.map(s => String(s)),
 ])
 const processFeatures = Object.freeze(cloneSafe(ogProcess.features))
 const processNextTick = staticCall(ogProcess.nextTick)

@@ -406,7 +406,7 @@ t.test('maybeStaticCall', t => {
 })
 
 t.test('StringPrototypeReplace sanity', t => {
-  t.equal(primordials.StringPrototypeReplace('foo', 'o', 'a'), 'fao');
-  t.equal(StringPrototypeReplace('foo', 'o', 'a'), 'fao');
+  t.equal(primordials.StringPrototypeReplace('foo', 'o', 'a'), 'fao')
+  t.equal(StringPrototypeReplace('foo', 'o', 'a'), 'fao')
   t.end()
-});
+})

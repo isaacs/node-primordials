@@ -14,6 +14,6 @@ related to hardening of iterators, because they incur a much more
 significant performance impact.
 
 The various `XPrototypeConstructor` properties are not included,
-because they're useless.  (Can't be called with `new` because
+because they're useless. (Can't be called with `new` because
 they're bound functions, but _must_ be called with `new` because
 they're constructors.)
