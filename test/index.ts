@@ -30,6 +30,12 @@ const cleanObj = (o: any, seen: Set<any> = new Set()): any => {
 }
 t.formatSnapshot = (obj: any) => cleanObj(obj)
 
+if (process.version.startsWith('v16.')) {
+  ;(primordials.ArrayPrototypeSymbolUnscopables as any)['findLast'] = true
+  ;(primordials.ArrayPrototypeSymbolUnscopables as any)['findLastIndex'] =
+    true
+}
+
 t.matchSnapshot(primordials, 'primordials object')
 for (const [k, v] of Object.entries(primordialsNamed)) {
   if (k === 'primordials') continue
@@ -408,5 +414,62 @@ t.test('maybeStaticCall', t => {
 t.test('StringPrototypeReplace sanity', t => {
   t.equal(primordials.StringPrototypeReplace('foo', 'o', 'a'), 'fao')
   t.equal(StringPrototypeReplace('foo', 'o', 'a'), 'fao')
+  t.end()
+})
+
+t.test('makeSafe', async t => {
+  const originals = [
+    [Object, undefined],
+    [Map, Map.prototype.has],
+    [WeakMap, WeakMap.prototype.has],
+    [Set, Set.prototype.has],
+    [WeakSet, WeakSet.prototype.has],
+  ] as const
+  const tamperRunRestore = <T extends (...args: any[]) => any>(fn: T) => {
+    originals.forEach(
+      ([obj]) =>
+        ((obj.prototype as any).has = () => {
+          throw new Error('should not be called')
+        })
+    )
+    const value = fn()
+    originals.forEach(
+      ([obj, original]) => ((obj.prototype as any).has = original)
+    )
+    return value
+  }
+  const map = new primordials.SafeMap()
+  const weeakMap = new primordials.SafeWeakMap()
+  const set = new primordials.SafeSet()
+  const weakSet = new primordials.SafeWeakSet()
+  const key = {}
+
+  ;[map, weeakMap, set, weakSet].forEach(obj => {
+    t.equal(obj.has(key), false)
+    t.equal(
+      tamperRunRestore(() => obj.has(key)),
+      false
+    )
+  })
+  ;[map, weeakMap].forEach(obj => obj.set(key, 'bar'))
+  ;[set, weakSet].forEach(obj => obj.add(key))
+  ;[map, weeakMap, set, weakSet].forEach(obj => {
+    t.equal(obj.has(key), true)
+    t.equal(
+      tamperRunRestore(() => obj.has(key)),
+      true
+    )
+  })
+
+  t.same([...set], [key])
+  t.same([...set[Symbol.iterator]()], [key])
+  t.same([...map], [[key, 'bar']])
+  t.same([...map[Symbol.iterator]()], [[key, 'bar']])
+
+  t.equal(await new primordials.SafePromise(r => r('foo')), 'foo')
+  t.same(new primordials.SafeWeakRef({}).deref(), {})
+
+  t.ok(new primordials.SafeFinalizationRegistry(() => {}))
+
   t.end()
 })
