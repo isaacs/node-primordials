@@ -2386,6 +2386,7 @@ const createSafeIterator = <T, TReturn, TNext>(
       return next(this._iterator)
     }
     [Symbol.iterator]() {
+      /* c8 ignore next 2 */
       return this
     }
     [SymbolIterator]() {
@@ -2428,7 +2429,6 @@ const makeSafe = <T, C extends Constractable<any>>(unsafe: C, safe: C) => {
             (FunctionPrototypeCall(desc.value, dummy) ?? {})
         ) {
           const x: string[] = []
-          const y = x[Symbol.iterator]
 
           const createIterator = uncurryThis(desc.value) as unknown as (
             val: T
