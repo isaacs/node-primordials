@@ -2416,7 +2416,7 @@ interface Constractable<T> extends NewableFunction {
 const makeSafe = <T, C extends Constractable<any>>(unsafe: C, safe: C) => {
   if (SymbolIterator in unsafe.prototype) {
     const dummy = new unsafe()
-    let next // We can reuse the same `next` method.
+    let next: (...args: [] | [any]) => IteratorResult<T, any> // We can reuse the same `next` method.
 
     ArrayPrototypeForEach(ReflectOwnKeys(unsafe.prototype), key => {
       if (!ReflectGetOwnPropertyDescriptor(safe.prototype, key)) {
@@ -2433,7 +2433,7 @@ const makeSafe = <T, C extends Constractable<any>>(unsafe: C, safe: C) => {
           const createIterator = uncurryThis(desc.value) as unknown as (
             val: T
           ) => IterableIterator<any>
-          next ||= uncurryThis(createIterator(dummy).next)
+          next = next || uncurryThis(createIterator(dummy).next)
           const SafeIterator = createSafeIterator(createIterator, next)
           desc.value = function () {
             return new SafeIterator(this as unknown as T)
