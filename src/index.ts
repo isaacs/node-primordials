@@ -2433,7 +2433,7 @@ const makeSafe = <T, C extends Constractable<any>>(unsafe: C, safe: C) => {
           const createIterator = uncurryThis(desc.value) as unknown as (
             val: T
           ) => IterableIterator<any>
-          next ??= uncurryThis(createIterator(dummy).next)
+          next ||= uncurryThis(createIterator(dummy).next)
           const SafeIterator = createSafeIterator(createIterator, next)
           desc.value = function () {
             return new SafeIterator(this as unknown as T)
