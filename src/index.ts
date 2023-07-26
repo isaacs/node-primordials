@@ -2410,10 +2410,10 @@ const copyProps = (src: object, dest: object) => {
   })
 }
 
-interface Constractable<T> extends NewableFunction {
+interface Constructable<T> extends NewableFunction {
   new (...args: any[]): T
 }
-const makeSafe = <T, C extends Constractable<any>>(unsafe: C, safe: C) => {
+const makeSafe = <T, C extends Constructable<any>>(unsafe: C, safe: C) => {
   if (SymbolIterator in unsafe.prototype) {
     const dummy = new unsafe()
     let next: (...args: [] | [any]) => IteratorResult<T, any> // We can reuse the same `next` method.
